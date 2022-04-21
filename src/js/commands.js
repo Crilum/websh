@@ -33,11 +33,8 @@ function duckduckgo(args) {
     }
 }
 
-// print text
+// Print text
 function echo(args) {
     block_log(args);
 }
-
-
-
 

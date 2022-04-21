@@ -35,7 +35,7 @@ function submit_command() {
         window[command](args);
         lastCommand = command + args;
     } else if (command != "") {
-        block_log("command not found : " + command);
+        block_log("websh: " + command + ": command not found");
     }
 }
 
@@ -45,3 +45,4 @@ function getLastCommand() {
         document.getElementById("input_source").value = lastCommand;
     }
 }
+
