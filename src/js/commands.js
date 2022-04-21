@@ -22,6 +22,21 @@ function clear(args) {
     document.getElementById('wrapper').innerHTML = "";
 }
 
+// Search on DuckDuckGo
+ddg = duckduckgo;
+function duckduckgo(args) {
+    if (args != undefined) {
+        search = args.replace(" ", "+")
+        window.open("https://duckduckgo.com/?q=" + search);
+    } else {
+        window.open("https://duckduckgo.com/");
+    }
+}
+
+// print text
+function echo(args) {
+    block_log(args);
+}
 
 
 
