@@ -39,10 +39,32 @@ function submit_command() {
     }
 }
 
+
 function getLastCommand() {
-    if (!(event.keyCode === 38)) return;
-    if (lastCommand) {
-        document.getElementById("input_source").value = lastCommand;
-    }
+	if (!(event.keyCode === 38)) return
+	if (lastCommand) {
+		document.getElementById("input_source").value = lastCommand
+	}
 }
 
+cookies = document.cookie.split(";")
+cookies.forEach((cookie) => {
+	if (cookie.includes("promptcolor")) {
+		document.documentElement.style.setProperty(
+			"--prompt-bg-color",
+			cookie.slice(cookie.indexOf("=") + 1)
+		)
+	}
+	if (cookie.includes("textcolor")) {
+		document.documentElement.style.setProperty(
+			"--text-color",
+			cookie.slice(cookie.indexOf("=") + 1)
+		)
+	}
+	if (cookie.includes("bgcolor")) {
+		document.documentElement.style.setProperty(
+			"--main-bg-color",
+			cookie.slice(cookie.indexOf("=") + 1)
+		)
+	}
+})
