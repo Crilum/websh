@@ -2,8 +2,8 @@
 g = google;
 function google(args) {
     if (args != undefined) {
-        search = args.replace(" ", "+")
-        search = args.replace("+", "%2B")
+        search = args[0].replace(" ", "+")
+        search = args[0].replace("+", "%2B")
         window.location.href = "https://www.google.com/search?q=" + search;
     } else {
         window.open("https://www.google.com");
@@ -31,8 +31,8 @@ d = duckduckgo;
 search = duckduckgo;
 function duckduckgo(args) {
     if (args != undefined) {
-        search = args.replace(" ", "+")
-        search = args.replace("+", "%2B")
+        search = args[0].replace(" ", "+")
+        search = args[0].replace("+", "%2B")
         window.open("https://duckduckgo.com/?q=" + search);
     } else {
         window.open("https://duckduckgo.com/");
@@ -44,8 +44,8 @@ w = wikipedia;
 wiki = wikipedia;
 function wikipedia(args) {
     if (args != undefined) {
-        search = args.replace(" ", "+")
-        search = args.replace("+", "%2B")
+        search = args[0].replace(" ", "+")
+        search = args[0].replace("+", "%2B")
         window.open("https://wikipedia.org/w/index.php?search=" + search);
     } else {
         window.open("https://wikipedia.org/");
@@ -56,8 +56,8 @@ function wikipedia(args) {
 gh = github;
 function github(args) {
     if (args != undefined) {
-        search = args.replace(" ", "+")
-        search = args.replace("+", "%2B")
+        search = args[0].replace(" ", "+")
+        search = args[0].replace("+", "%2B")
         window.open("https://github.com/search?q=" + search);
     } else {
         window.open("https://github.com/");
