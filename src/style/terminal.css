@@ -1,7 +1,14 @@
+/*Dark-teal colors
+color: #181a1b;
+    color: #3391ff;
+    border-color: #545b5e;
+    background-color: #0f3a48*/
+
 :root {
     --main-bg-color: #507496bd;
     --prompt-bg-color: #262626;
     --text-color: #138f4d;
+    --box-color: rgb(59, 59, 59);
 }
 
 * {
@@ -68,3 +75,133 @@ input {
   background-clip: text;
 }
 
+#bookmarkBox {
+    width: 50vw;
+    height: 25vw;
+    box-shadow: 1px 1px 10px;
+    border-radius: 4px;
+    padding: 1.5em 0.5em;
+    overflow:auto; 
+    position: fixed;
+    top:1%;
+    left: 15px;
+    background-color: var(--prompt-bg-color);
+    color: var(--text-color);
+    display: none;
+}
+
+#bookmarkBoxInner {
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+}
+
+#bookmarkBoxInner input {
+    order: 2px solid black;
+    border-radius: 4px;
+    background-color: var(--box-color);
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    height: 1.5em;
+    
+}
+
+.textColor {
+    color: var(--text-color);
+}
+
+#bookmarkBox button {
+    background-color: var(--text-color);
+    border-radius: 4px;
+    /*border: 0.5px solid black;*/
+    position: absolute;
+    bottom: 5px;
+    padding: 3px 4px 3px 4px;
+    margin: 5px 5px 5px 5px;
+}
+
+#bookmarkBox button:hover {
+    animation: background-fade 0.6s forwards;
+    -webkit-animation: background-fade 0.6s forwards;
+    -moz-animation: background-fade 0.6s forwards;
+}
+
+@-webkit-keyframes background-fade {
+    100% {
+        background:rgb(46, 0, 153);
+    }
+}
+@-moz-keyframes background-fade {
+    100% {
+        background:rgb(46, 0, 153);
+    }
+}
+@keyframes background-fade {
+
+    100% {
+        background:rgb(46, 0, 153);
+    }
+    
+}
+
+#themeBox {
+    width: 50vw;
+    height: 25vw;
+    box-shadow: 1px 1px 10px;
+    border-radius: 4px;
+    padding: 1.5em 0.5em;
+    overflow:auto; 
+    position: fixed;
+    top:1%;
+    left: 15px;
+    background-color: var(--prompt-bg-color);
+    color: var(--text-color);
+    display: none;
+}
+
+#themeBoxInner {
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+}
+
+#themeBoxInner input {
+    order: 2px solid black;
+    border-radius: 4px;
+    background-color: var(--box-color);
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    height: 1.5em;
+    
+}
+
+#themeBox button {
+    background-color: var(--text-color);
+    border-radius: 4px;
+    /*border: 0.5px solid black;*/
+    position: absolute;
+    bottom: 5px;
+    padding: 3px 4px 3px 4px;
+    margin: 5px 5px 5px 5px;
+}
+
+#themeBox button:hover {
+    animation: background-fade 0.6s forwards;
+    -webkit-animation: background-fade 0.6s forwards;
+    -moz-animation: background-fade 0.6s forwards;
+}
+
+@-webkit-keyframes background-fade {
+    100% {
+        background:rgb(46, 0, 153);
+    }
+}
+@-moz-keyframes background-fade {
+    100% {
+        background:rgb(46, 0, 153);
+    }
+}
+@keyframes background-fade {
+    100% {
+        background:rgb(46, 0, 153);
+    }
+    
+}

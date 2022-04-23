@@ -5,11 +5,13 @@
     <title>WebSH Terminal</title>
     <link rel="stylesheet" href="./src/style/terminal.css">
     <link rel="icon" type="image/x-icon" href="./icons/favicon.ico">
-</head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+</head> 
 <body>
     <div>
         <div id="screen">
-            <div id="Container" id="rain">
+            <div id="Container">
                 <div id="input">
                     <p id="input_title"></p>
                     <input id="input_source" type="command" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus>
@@ -17,6 +19,36 @@
                 <div id="logger">
                     <div id="wrapper">
 
+                    </div>
+                </div>
+                <div id="bookmarkBox">
+                    <h5 class="textColor">Bookmark Settings:<h5/>
+                    <br>
+                    <div id="bookmarkBoxInner">
+                        <h7 class="textColor">Name:<h7/>
+                        <input id="bookmarkName" class="input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off" autofocus>
+                        <h7 class="textColor">Full website URL:<h7/>
+                        <input id="bookmarkURL" class="input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off" autofocus>
+                        <button id="bookmarkAddCancel" style="right: 55px;">Cancel</button>
+                        <button id="bookmarkAddOk" style="right: 5px;">Save</button>
+                    </div>
+                </div>
+                <div id="themeBox">
+                    <h5 class="textColor">New theme:<h5/>
+                    <br>
+                    <div id="themeBoxInner">
+                        <h7 class="textColor">Name:<h7/>
+                        <input id="themeName" class="input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off" autofocus>
+                        <h7 class="textColor">Text color:<h7/>
+                        <input id="themeTextColor" class="input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off" autofocus>
+                        <h7 class="textColor">Terminal color:<h7/>
+                        <input id="themeTermColor" class="input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off" autofocus>
+                        <h7 class="textColor">Background color:<h7/>
+                        <input id="themeBgColor" class="input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off" autofocus>
+                        <h7 class="textColor">Text input background color:<h7/>
+                        <input id="themeTextBgColor" class="input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off" autofocus>    
+                        <button id="themeAddCancel" style="right: 55px;">Cancel</button>
+                        <button id="themeAddOk" style="right: 5px;">Save</button>
                     </div>
                 </div>
             </div>

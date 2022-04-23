@@ -20,6 +20,11 @@ function block_log(message) {
     new_block();
 }
 
+function error(message) {
+	current_block.innerHTML = '<p style="color: red;">' + message + "</p>";
+	new_block()
+}
+
 function submit_command() {
     if (!(event.keyCode === 13)) return;
     var input = document.getElementById("input_source").value;
@@ -28,14 +33,21 @@ function submit_command() {
     new_block();
 
     command = input.split(" ")[0];
-    args = input.replace(command, "")
+	lastCommandArgs = input.replace(command, "")
+	args = new Array
+	inputFiltered = input.replace(command, "").replace(" ", "");
+	for (i = 0; i < 2; i++) {
+		args[i] = inputFiltered.split(" ")[i]
+	  }
+    
 
     if (typeof window[command] === "function") {
-        block_log(config.shellPrompt + command + " " + args);
-        window[command](args);
-        lastCommand = command + args;
+        block_log(config.shellPrompt + command + " " + lastCommandArgs);
+		window[command](args);
+        lastCommand = command + lastCommandArgs;
     } else if (command != "") {
         block_log("websh: " + command + ": command not found");
+		lastCommand = command + lastCommandArgs;
     }
 }
 
@@ -64,6 +76,12 @@ cookies.forEach((cookie) => {
 	if (cookie.includes("bgcolor")) {
 		document.documentElement.style.setProperty(
 			"--main-bg-color",
+			cookie.slice(cookie.indexOf("=") + 1)
+		)
+	}
+	if (cookie.includes("textboxcolor")) {
+		document.documentElement.style.setProperty(
+			"--box-color",
 			cookie.slice(cookie.indexOf("=") + 1)
 		)
 	}
