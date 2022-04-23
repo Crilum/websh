@@ -2,8 +2,8 @@
 g = google;
 function google(args) {
     if (args != undefined) {
-        search = args[0].replace(" ", "+")
-        search = args[0].replace("+", "%2B")
+        search = args.replace(" ", "+")
+        search = args.replace("+", "%2B")
         window.location.href = "https://www.google.com/search?q=" + search;
     } else {
         window.open("https://www.google.com");
@@ -31,8 +31,8 @@ d = duckduckgo;
 search = duckduckgo;
 function duckduckgo(args) {
     if (args != undefined) {
-        search = args[0].replace(" ", "+")
-        search = args[0].replace("+", "%2B")
+        search = args.replace(" ", "+")
+        search = args.replace("+", "%2B")
         window.open("https://duckduckgo.com/?q=" + search);
     } else {
         window.open("https://duckduckgo.com/");
@@ -44,8 +44,8 @@ w = wikipedia;
 wiki = wikipedia;
 function wikipedia(args) {
     if (args != undefined) {
-        search = args[0].replace(" ", "+")
-        search = args[0].replace("+", "%2B")
+        search = args.replace(" ", "+")
+        search = args.replace("+", "%2B")
         window.open("https://wikipedia.org/w/index.php?search=" + search);
     } else {
         window.open("https://wikipedia.org/");
@@ -56,19 +56,27 @@ function wikipedia(args) {
 gh = github;
 function github(args) {
     if (args != undefined) {
-        search = args[0].replace(" ", "+")
-        search = args[0].replace("+", "%2B")
+        search = args.replace(" ", "+")
+        search = args.replace("+", "%2B")
         window.open("https://github.com/search?q=" + search);
     } else {
         window.open("https://github.com/");
     }
 }
-
+/*
 // Print text
 function echo(args) {
-    block_log(args);
+    msg = args+[]
+    block_log(msg.replace(/,/g, " "))
 }
 
+function ec() {
+    cmd = input.split(" ")[0]
+    msg = input.replace(cmd, "")
+
+    block_log(msg)
+}
+*/
 function help() {
     block_log("websh: the modern webshell emulator" + "<br/><br/> websh tools:<br/><br/> `echo` - print specified text<br/>  `clock` - print time<br/>  `link` - open the specified full URL, i.e. 'https://github.com'<br/>  `bk`, `bookmark` - Create, manage, and use websh bookmarks. `bookmark help` for more info.<br>  `theme` - set terminal theme. `theme help` for more info.<br/><br/> Search engines:<br/><br/>  `g`, or `google` - go to https://google.com, or search for ARGS<br/>  `s`, `search`, `d`, `ddg`, or `duckduckgo` - go to https://duckduckgo.com, or search for ARGS" + "<br/>  `w`, or `wikipedia` - go to https://wikipedia.org, or search for ARGS<br/>  `gh`, or `github` - go to https://github.com, or search for ARGS<br/><br/> Settings:<br/><br/>  `textcolor` - set the terminal text color<br/>  `bgcolor` - Set the background color<br/>  `termcolor` - Set the Terminal color<br>  `textboxcolor` - set the color of text boxes<br/><br/>Note: for color setting use CSS Colors, or HEX Codes.<br/>")
 }
@@ -124,9 +132,9 @@ function link(args) {
 }
 
 bk = bookmark
-function bookmark(args) {
-    main = args[0]
-    sub = args[1]
+function bookmark(argsArray) {
+    main = argsArray[0]
+    sub = argsArray[1]
     if (main == "add" || main == "new") {
         document.getElementById("bookmarkName").value = ""
         document.getElementById("bookmarkURL").value = ""
@@ -178,9 +186,9 @@ function bookmark(args) {
 }
 
 
-function theme(args) {
-    main = args[0]
-    sub = args[1]
+function theme(argsArray) {
+    main = argsArray[0]
+    sub = argsArray[1]
     if (main == "new") {
         document.getElementById("themeName").value = ""
         document.getElementById("themeTextColor").value = ""
@@ -275,7 +283,7 @@ function theme(args) {
             .split('; ')
             .find(row => row.startsWith(`theme-${sub}-themeTextBgColor=`.split(" ").join(""))
             ).split('=')[1]
-        
+
         // Do the deleting
         document.cookie = `theme-${sub}-themeTextColor=${themeTextColor}; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure`
         document.cookie = `theme-${sub}-themeTermColor=${themeTermColor}; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure`

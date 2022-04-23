@@ -3,6 +3,7 @@ config = {
     shellPrompt: "$ "
 }
 
+
 document.getElementById("input_title").innerText = config.shellPrompt;
 document.getElementById('input_source').addEventListener('keyup', submit_command);
 document.getElementById('input_source').addEventListener('keyup', getLastCommand);
@@ -15,6 +16,7 @@ function new_block() {
     document.getElementById('wrapper').appendChild(current_block);
 }
 
+echo = block_log
 function block_log(message) {
     current_block.innerHTML = "<p>" + message + "</p>";
     new_block();
@@ -28,26 +30,27 @@ function error(message) {
 function submit_command() {
     if (!(event.keyCode === 13)) return;
     var input = document.getElementById("input_source").value;
-    document.getElementById("input_source").value = "";
+	document.getElementById("input_source").value = "";
 
     new_block();
 
     command = input.split(" ")[0];
-	lastCommandArgs = input.replace(command, "")
-	args = new Array
-	inputFiltered = input.replace(command, "").replace(" ", "");
-	for (i = 0; i < 2; i++) {
-		args[i] = inputFiltered.split(" ")[i]
-	  }
-    
-
-    if (typeof window[command] === "function") {
-        block_log(config.shellPrompt + command + " " + lastCommandArgs);
+	args = input.replace(command, "")
+	argsArray = input
+		.replace(command, "")
+		.replace(" ", "")
+		.split(" ")
+    if (typeof window[command] === "function" && command == "bk" || command == "bookmark" || command == "theme") {
+        block_log(config.shellPrompt + command + " " + args);
+		window[command](argsArray);
+        lastCommand = command + args;
+    } else if (typeof window[command] === "function") {
+		block_log(config.shellPrompt + command + " " + args);
 		window[command](args);
-        lastCommand = command + lastCommandArgs;
-    } else if (command != "") {
+        lastCommand = command + args;
+	} else if (command != "") {
         block_log("websh: " + command + ": command not found");
-		lastCommand = command + lastCommandArgs;
+		lastCommand = command + args;
     }
 }
 
