@@ -97,7 +97,7 @@ function help() {
     <br/>  \`bgcolor\` - Set the background color
     <br/>  \`termcolor\` - Set the Terminal color
     <br>  \`textboxcolor\` - set the color of text boxes
-    <br/><br/>Note: for color setting use CSS Colors, or HEX Codes.<br/>`)
+    <br/><br/>Note: for color setting use CSS Colors, HEX Codes, or rgb() Colors.<br/>`)
 }
 
 
