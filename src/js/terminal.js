@@ -40,7 +40,14 @@ function submit_command() {
 		.replace(command, "")
 		.replace(" ", "")
 		.split(" ")
-    if (typeof window[command] === "function" && command == "bk" || command == "bookmark" || command == "theme") {
+    if (typeof window[command] === "function" 
+		&& command == "bk" 
+		|| command == "bookmark"
+		|| command == "theme"
+		|| command == "code"
+		|| command == "vs"
+		|| command == "vscode"
+		|| command == "snap") {
         block_log(config.shellPrompt + command + " " + args);
 		window[command](argsArray);
         lastCommand = command + args;

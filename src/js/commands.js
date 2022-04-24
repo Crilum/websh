@@ -78,7 +78,26 @@ function ec() {
 }
 */
 function help() {
-    block_log("websh: the modern webshell emulator" + "<br/><br/> websh tools:<br/><br/> `echo` - print specified text<br/>  `clock` - print time<br/>  `link` - open the specified full URL, i.e. 'https://github.com'<br/>  `bk`, `bookmark` - Create, manage, and use websh bookmarks. `bookmark help` for more info.<br>  `theme` - set terminal theme. `theme help` for more info.<br/><br/> Search engines:<br/><br/>  `g`, or `google` - go to https://google.com, or search for ARGS<br/>  `s`, `search`, `d`, `ddg`, or `duckduckgo` - go to https://duckduckgo.com, or search for ARGS" + "<br/>  `w`, or `wikipedia` - go to https://wikipedia.org, or search for ARGS<br/>  `gh`, or `github` - go to https://github.com, or search for ARGS<br/><br/> Settings:<br/><br/>  `textcolor` - set the terminal text color<br/>  `bgcolor` - Set the background color<br/>  `termcolor` - Set the Terminal color<br>  `textboxcolor` - set the color of text boxes<br/><br/>Note: for color setting use CSS Colors, or HEX Codes.<br/>")
+    block_log(`websh: the modern webshell emulator
+    <br/><br/> websh tools:
+    <br/><br/> \`echo\` - print specified text
+    <br/>  \`clock\` - print time
+    <br/>  \`link\` - open the specified full URL, i.e. 'https://github.com'
+    <br/>  \`bk\`, \`bookmark\` - Create, manage, and use websh bookmarks. \`bookmark help\` for more info.
+    <br>  \`theme\` - set terminal theme. \`theme help\` for more info.
+    <br>  \`vscode\`, \`code\`, or \`vs\` - Use VS Code in your browser, or on your computer.
+    <br>  \`snap\` - open snaps in the Snap Store
+    <br/><br/> Search engines:
+    <br/><br/>  \`g\`, or \`google\` - go to https://google.com, or search for ARGS
+    <br/>  \`s\`, \`search\`, \`d\`, \`ddg\`, or \`duckduckgo\` - go to https://duckduckgo.com, or search for ARGS
+    <br/>  \`w\`, or \`wikipedia\` - go to https://wikipedia.org, or search for ARGS
+    <br/>  \`gh\`, or \`github\` - go to https://github.com, or search for ARGS
+    <br/><br/> Settings:
+    <br/><br/>  \`textcolor\` - set the terminal text color
+    <br/>  \`bgcolor\` - Set the background color
+    <br/>  \`termcolor\` - Set the Terminal color
+    <br>  \`textboxcolor\` - set the color of text boxes
+    <br/><br/>Note: for color setting use CSS Colors, or HEX Codes.<br/>`)
 }
 
 
@@ -304,5 +323,46 @@ function theme(argsArray) {
         <br>  \`theme delete SeaGreen\` - deletes a user-created theme called 'SeaGreen'`)
     } else {
         error("E: no argument specified, or bad argument!")
+    }
+}
+
+vs = vscode
+code = vscode
+function vscode(argsArray) {
+    main = argsArray[0]
+    sub = argsArray[1]
+    if (main == "local") {
+        window.open("vscode://open")
+    } else if (main == "help") {
+        block_log(`vscode, code, vs - the Visual Studio Code helper
+        <br><br> Subcommands:
+        <br><br>  \`local\` - open VS Code locally on your computer.
+        <br>   Note: requires VS Code to be installed on your computer
+        <br><br> Examples:
+        <br><br>  \`code\` - open 'https://vscode.dev'
+        <br>  \`code local\` - opens VS Code on your computer, with 'vscode://open'`)
+    } else {
+        window.open("https://vscode.dev")
+    }
+}
+
+function snap(argsArray) {
+    if (navigator.userAgent.includes("Linux")) {
+        main = argsArray[0]
+        sub = argsArray[1]
+        if (main == "open") {
+            window.open(`snap://${sub}`)
+        } else if (main == "help") {
+            block_log(`snap - a snap helper for websh
+            <br><br> Subcommands:
+            <br><br>  open - open a specified snap in the Snap Store
+            <br>   Note: snapd, as well as the snap store must be installed to use this feature.
+            <br><br> Examples:
+            <br><br>  \`snap open telegram-desktop\` - opens the snap 'telegram-desktop' in the Snap Store`)
+        } else {
+            error("E: no argument specified, or bad argument!")
+        }
+    } else {
+        error("E: you're not using Linux, so you can't use snapd!")
     }
 }
