@@ -1,6 +1,6 @@
 # websh
 
-A shell inside a website!
+The web powered shell emulator
 
-![](preview.png)
+![websh gif](pics/websh-showoff.gif)
 
