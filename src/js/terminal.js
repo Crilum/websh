@@ -47,7 +47,9 @@ function submit_command() {
 		|| command == "code"
 		|| command == "vs"
 		|| command == "vscode"
-		|| command == "snap") {
+		|| command == "snap"
+		|| command == "lds"
+		|| command == "churchofjesuschrist") {
         block_log(config.shellPrompt + command + " " + args);
 		window[command](argsArray);
         lastCommand = command + args;
