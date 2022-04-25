@@ -68,7 +68,7 @@ lds = churchofjesuschrist
 function churchofjesuschrist(argsArray) {
     main = argsArray[0]
     sub = argsArray[1]
-    scripture = args.replace(main, "").replace(sub, "")
+    scripture = args.replace(main, "").replace(/ /g, "")
     if (main == "search" || main == "s" || main == "") {
         if (sub != undefined) {
             search = sub.replace(" ", "+")
