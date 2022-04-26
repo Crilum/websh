@@ -7,7 +7,7 @@ function google(args) {
             .replace(" ", "+")
             .replace("&", "%26")
             .replace("#", "%23")
-        window.location.href = "https://www.google.com/search?q=" + search;
+        window.open("https://www.google.com/search?q=" + search);
     } else {
         window.open("https://www.google.com");
     }
@@ -80,8 +80,11 @@ function github(args) {
 t = thingiverse
 function thingiverse(args) {
     if (args != undefined) {
-        search = args.replace(" ", "+")
-        search = args.replace("+", "%2B")
+        search = args
+            .replace("+", "%2B")
+            .replace(" ", "+")
+            .replace("&", "%26")
+            .replace("#", "%23")
         window.open("https://thingiverse.com/search?q=" + search);
     } else {
         window.open("https://thingiverse.com/");
