@@ -76,6 +76,18 @@ function github(args) {
     }
 }
 
+// Search on Thingiverse
+t = thingiverse
+function thingiverse(args) {
+    if (args != undefined) {
+        search = args.replace(" ", "+")
+        search = args.replace("+", "%2B")
+        window.open("https://thingiverse.com/search?q=" + search);
+    } else {
+        window.open("https://thingiverse.com/");
+    }
+}
+
 // Search on Amazon
 a = amazon
 function amazon(args) {
@@ -194,6 +206,8 @@ function help() {
     <br/>  \`gh\`, or \`github\` - go to https://github.com, or search for ARGS
     <br/>  \`a\`, or \`amazon\` - go to https://amazon.com, or search for ARGS
     <br/>  \`r\`, or \`reddit\` - go to https://reddit.com, open ARGS subreddit, or search for ARGS. see \`r help\` for more info
+    <br>   \`t\`, or \`thingiverse\` - go to https://thingiverse.com, or search for ARGS
+    <br>   \`lds\`, or \`churchofjesuschrist\` - go to https://churchofjesuschrist.org, open ARGS book/chapter of the Book of Mormon, or search for ARGS. see \`lds help\` for more info
     <br/><br/> Settings:
     <br/><br/>  \`textcolor\` - set the terminal text color
     <br/>  \`bgcolor\` - Set the background color
