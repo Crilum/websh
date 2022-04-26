@@ -1,7 +1,7 @@
 // Search something on google, if no arguments are provided => www.google.com
 g = google;
 function google(args) {
-    if (args != undefined) {
+    if (args != undefined && args != "") {
         search = args
             .replace("+", "%2B")
             .replace(" ", "+")
@@ -33,7 +33,7 @@ s = duckduckgo;
 d = duckduckgo;
 search = duckduckgo;
 function duckduckgo(args) {
-    if (args != undefined) {
+    if (args != undefined && args != "") {
         search = args
             .replace("+", "%2B")
             .replace(" ", "+")
@@ -49,7 +49,7 @@ function duckduckgo(args) {
 w = wikipedia;
 wiki = wikipedia;
 function wikipedia(args) {
-    if (args != undefined) {
+    if (args != undefined && args != "") {
         search = args
             .replace("+", "%2B")
             .replace(" ", "+")
@@ -64,7 +64,7 @@ function wikipedia(args) {
 // Search on Github
 gh = github;
 function github(args) {
-    if (args != undefined) {
+    if (args != undefined && args != "") {
         search = args
             .replace("+", "%2B")
             .replace(" ", "+")
@@ -79,7 +79,7 @@ function github(args) {
 // Search on Thingiverse
 t = thingiverse
 function thingiverse(args) {
-    if (args != undefined) {
+    if (args != undefined && args != "") {
         search = args
             .replace("+", "%2B")
             .replace(" ", "+")
@@ -94,7 +94,7 @@ function thingiverse(args) {
 // Search on Amazon
 a = amazon
 function amazon(args) {
-    if (args != undefined) {
+    if (args != undefined && args != "") {
         search = args
             .replace("+", "%2B")
             .replace(" ", "+")

@@ -35,8 +35,8 @@ function submit_command() {
     new_block();
 
     command = input.split(" ")[0];
-	args = input.replace(command, "")
-	lastCommand = command + args;
+	args = input.replace(command, "").replace(" ", "")
+	lastCommand = command + input.replace(command, "");
 	argsArray = input
 		.replace(command, "")
 		.replace(" ", "")
@@ -55,14 +55,14 @@ function submit_command() {
 		|| command == "reddit") {
         block_log(config.shellPrompt + command + " " + args);
 		window[command](argsArray);
-        lastCommand = command + args;
+        lastCommand = command + input.replace(command, "");
     } else if (typeof window[command] === "function") {
 		block_log(config.shellPrompt + command + " " + args);
 		window[command](args);
-        lastCommand = command + args;
+        lastCommand = command + input.replace(command, "");
 	} else if (command != "") {
         block_log("websh: " + command + ": command not found");
-		lastCommand = command + args;
+		lastCommand = command + input.replace(command, "");
     }
 }
 
