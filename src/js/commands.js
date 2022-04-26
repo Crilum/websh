@@ -2,8 +2,11 @@
 g = google;
 function google(args) {
     if (args != undefined) {
-        search = args.replace(" ", "+")
-        search = args.replace("+", "%2B")
+        search = args
+            .replace("+", "%2B")
+            .replace(" ", "+")
+            .replace("&", "%26")
+            .replace("#", "%23")
         window.location.href = "https://www.google.com/search?q=" + search;
     } else {
         window.open("https://www.google.com");
@@ -31,8 +34,11 @@ d = duckduckgo;
 search = duckduckgo;
 function duckduckgo(args) {
     if (args != undefined) {
-        search = args.replace(" ", "+")
-        search = args.replace("+", "%2B")
+        search = args
+            .replace("+", "%2B")
+            .replace(" ", "+")
+            .replace("&", "%26")
+            .replace("#", "%23")
         window.open("https://duckduckgo.com/?q=" + search);
     } else {
         window.open("https://duckduckgo.com/");
@@ -44,8 +50,11 @@ w = wikipedia;
 wiki = wikipedia;
 function wikipedia(args) {
     if (args != undefined) {
-        search = args.replace(" ", "+")
-        search = args.replace("+", "%2B")
+        search = args
+            .replace("+", "%2B")
+            .replace(" ", "+")
+            .replace("&", "%26")
+            .replace("#", "%23")
         window.open("https://wikipedia.org/w/index.php?search=" + search);
     } else {
         window.open("https://wikipedia.org/");
@@ -56,11 +65,29 @@ function wikipedia(args) {
 gh = github;
 function github(args) {
     if (args != undefined) {
-        search = args.replace(" ", "+")
-        search = args.replace("+", "%2B")
+        search = args
+            .replace("+", "%2B")
+            .replace(" ", "+")
+            .replace("&", "%26")
+            .replace("#", "%23")
         window.open("https://github.com/search?q=" + search);
     } else {
         window.open("https://github.com/");
+    }
+}
+
+// Search on Amazon
+a = amazon
+function amazon(args) {
+    if (args != undefined) {
+        search = args
+            .replace("+", "%2B")
+            .replace(" ", "+")
+            .replace("&", "%26")
+            .replace("#", "%23")
+        window.open("https://amazon.com/s?k=" + search);
+    } else {
+        window.open("https://amazon.com/");
     }
 }
 
@@ -68,11 +95,17 @@ lds = churchofjesuschrist
 function churchofjesuschrist(argsArray) {
     main = argsArray[0]
     sub = argsArray[1]
-    scripture = args.replace(main, "").replace(/ /g, "")
+    scripture = args
+        .replace(main, "")
+        .replace(/ /, "")
+        .replace(/ /g, "/")
     if (main == "search" || main == "s" || main == "") {
         if (sub != undefined) {
-            search = sub.replace(" ", "+")
-            search = sub.replace("+", "%2B")
+            search = sub
+            .replace("+", "%2B")
+            .replace(" ", "+")
+            .replace("&", "%26")
+            .replace("#", "%23")
             window.open("https://www.churchofjesuschrist.org/search?query=" + search);
         } else {
             window.open("https://www.churchofjesuschrist.org/");
@@ -86,7 +119,7 @@ function churchofjesuschrist(argsArray) {
         <br>  \`bom\` - open ARGS book/chapter of the Book of Mormon. See 'Book Codes' section for info about book names
         <br><br> Examples:
         <br><br>  \`lds search tower\` - search for 'tower' on churchofjesuschrist.org
-        <br>  \`lds bom alma/31\`
+        <br>  \`lds bom alma/31\` or \`lds bom alma 31\` - open Alma 31 on churchofjesuschrist.org
         <br><br> Book Codes:
         <br><br>  Book of Mormon:
         <br><br>   \`1-ne\` - 1 Nephi
@@ -103,6 +136,42 @@ function churchofjesuschrist(argsArray) {
         <br>   \`4-ne\` - 4 Nephi
         <br>   \`morm\` - Mormon
         <br>   \`moro\` - Moroni`)
+    }
+}
+
+r = reddit
+function reddit(argsArray) {
+    main = argsArray[0]
+    sub = argsArray[1]
+    if (main == "search" || main == "s") {
+        search = sub
+            .replace("+", "%2B")
+            .replace(" ", "+")
+            .replace("&", "%26")
+            .replace("#", "%23")
+        window.open("https://reddit.com/search/?q=" + search);
+    } else if (main == "open" || main == "o") {
+        if (sub.includes("r/") == true) {
+            subreddit = sub.replace("r/", "")
+        } else {
+            subreddit = sub
+        }
+        window.open("https://reddit.com/r/" + subreddit)
+    } else if (argsArray[1] == undefined) {
+        if (main.includes("r/") == true) {
+            subreddit = main.replace("r/", "")
+        } else {
+            subreddit = main
+        }
+        window.open("https://reddit.com/r/" + subreddit)
+    } else if (main == "help") {
+        block_log(`r, reddit - search or open subreddits on reddit.com
+        <br><br> Subcommands:
+        <br><br>  \`search\`, \`s\` - search for ARGS on reddit.com
+        <br>  \`open\`, \`o\` - open ARGS subreddit
+        <br><br> Examples:
+        <br><br>  \`reddit search startpages\` - search for 'startpages' on reddit.com
+        <br>  \`r open r/startpages\` or \`r startpages\` - open 'r/startpages' on reddit.com`)
     }
 }
 
@@ -123,6 +192,8 @@ function help() {
     <br/>  \`s\`, \`search\`, \`d\`, \`ddg\`, or \`duckduckgo\` - go to https://duckduckgo.com, or search for ARGS
     <br/>  \`w\`, or \`wikipedia\` - go to https://wikipedia.org, or search for ARGS
     <br/>  \`gh\`, or \`github\` - go to https://github.com, or search for ARGS
+    <br/>  \`a\`, or \`amazon\` - go to https://amazon.com, or search for ARGS
+    <br/>  \`r\`, or \`reddit\` - go to https://reddit.com, open ARGS subreddit, or search for ARGS. see \`r help\` for more info
     <br/><br/> Settings:
     <br/><br/>  \`textcolor\` - set the terminal text color
     <br/>  \`bgcolor\` - Set the background color
@@ -395,11 +466,15 @@ function theme(argsArray) {
         document.cookie = `theme-${sub}-themeTermColor=${themeTermColor}; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure`
         document.cookie = `theme-${sub}-themeBgColor=${themeBgColor}; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure`
         document.cookie = `theme-${sub}-themeTextBgColor=${themeTextBgColor}; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure`
+    } else if (main == "inport") {
+        document.getElementById("fileInput").click()
     } else if (main == "help") {
         block_log(`theme - the websh theme tool
         <br><br> Subcommands:
         <br><br>  new - create a new theme
         <br>  load - load a saved theme
+        <br>  inport - inport a downloaded theme
+        <br>  export - download a saved theme
         <br>  set - load a built-in theme
         <br>  delete - delete a saved theme
         <br>  help - print this help
@@ -407,9 +482,51 @@ function theme(argsArray) {
         <br><br>  \`theme set default\` - sets the default theme
         <br>  \`theme new\` - create a new theme
         <br>  \`theme load SeaGreen\` - loads a user-created theme called 'SeaGreen'
-        <br>  \`theme delete SeaGreen\` - deletes a user-created theme called 'SeaGreen'`)
+        <br>  \`theme delete SeaGreen\` - deletes a user-created theme called 'SeaGreen'
+        <br>  \`theme export SeaGreen\` - exports a user-created theme called 'SeaGreen'
+        <br>  \`theme inport\` - inport a downloaded theme`)
     } else {
         error("E: no argument specified, or bad argument!")
+    }
+}
+
+function getInportedTheme() {
+    const content = document.querySelector('.content');
+    const [file] = document.querySelector('input[type=file]').files;
+    const reader = new FileReader();
+
+    reader.addEventListener("load", () => {
+        // this will then display a text file
+        content.innerText = reader.result;
+        fileString = document.getElementById("blobp").innerHTML.split("<br>")
+        let themeName = fileString[0].replace("themeName=", '')
+        let themeTextColor = fileString[1].replace("themeTextColor=", '')
+        let themeTermColor = fileString[2].replace("themeTermColor=", '')
+        let themeBgColor = fileString[3].replace("themeBgColor=", '')
+        let themeTextBgColor = fileString[4].replace("themeTextBgColor=", '')
+        
+        // set theme
+
+        block_log(`Text Color: ${themeTextColor}
+        <br>Terminal Color: ${themeTermColor}
+        <br>Background Color: ${themeBgColor}
+        <br>Textbox Color: ${themeTextBgColor}`)
+        textcolor(themeTextColor)
+        termcolor(themeTermColor)
+        bgcolor(themeBgColor)
+        textboxcolor(themeTextBgColor)
+
+        // Save theme
+
+        document.cookie = `theme-${themeName}-themeTextColor=${themeTextColor}; SameSite=None; Secure`
+        document.cookie = `theme-${themeName}-themeTermColor=${themeTermColor}; SameSite=None; Secure`
+        document.cookie = `theme-${themeName}-themeBgColor=${themeBgColor}; SameSite=None; Secure`
+        document.cookie = `theme-${themeName}-themeTextBgColor=${themeTextBgColor}; SameSite=None; Secure`
+
+    }, false);
+
+    if (file) {
+        reader.readAsText(file);
     }
 }
 

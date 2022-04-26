@@ -50,7 +50,9 @@ function submit_command() {
 		|| command == "vscode"
 		|| command == "snap"
 		|| command == "lds"
-		|| command == "churchofjesuschrist") {
+		|| command == "churchofjesuschrist"
+		|| command == "r"
+		|| command == "reddit") {
         block_log(config.shellPrompt + command + " " + args);
 		window[command](argsArray);
         lastCommand = command + args;
