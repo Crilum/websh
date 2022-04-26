@@ -64,6 +64,48 @@ function github(args) {
     }
 }
 
+lds = churchofjesuschrist
+function churchofjesuschrist(argsArray) {
+    main = argsArray[0]
+    sub = argsArray[1]
+    scripture = args.replace(main, "").replace(/ /g, "")
+    if (main == "search" || main == "s" || main == "") {
+        if (sub != undefined) {
+            search = sub.replace(" ", "+")
+            search = sub.replace("+", "%2B")
+            window.open("https://www.churchofjesuschrist.org/search?query=" + search);
+        } else {
+            window.open("https://www.churchofjesuschrist.org/");
+        }
+    } else if (main == "bom") {
+        window.open("https://www.churchofjesuschrist.org/study/scriptures/bofm/" + scripture)
+    } else if (main == "help") {
+        block_log(`lds, churchofjesuchrist - search or open scriptures on churchofjesuschrist.org
+        <br><br> Subcommands:
+        <br><br>  \`search\`, \`s\` - search for ARGS on churchofjesuschrist.org
+        <br>  \`bom\` - open ARGS book/chapter of the Book of Mormon. See 'Book Codes' section for info about book names
+        <br><br> Examples:
+        <br><br>  \`lds search tower\` - search for 'tower' on churchofjesuschrist.org
+        <br>  \`lds bom alma/31\`
+        <br><br> Book Codes:
+        <br><br>  Book of Mormon:
+        <br><br>   \`1-ne\` - 1 Nephi
+        <br>   \`2-ne\` - 2 Nephi
+        <br>   \`jacob\` - Jacob
+        <br>   \`enos\` - Enos
+        <br>   \`jarom\` - Jarom
+        <br>   \`omni\` - Omni
+        <br>   \`w-of-m\` - Words of Mormon
+        <br>   \`mosiah\` - Mosiah
+        <br>   \`alma\` - Alma
+        <br>   \`hel\` - Helaman
+        <br>   \`3-ne\` - 3 Nephi
+        <br>   \`4-ne\` - 4 Nephi
+        <br>   \`morm\` - Mormon
+        <br>   \`moro\` - Moroni`)
+    }
+}
+
 function help() {
     block_log(`websh: the modern webshell emulator
     <br/><br/> websh tools:
