@@ -311,7 +311,11 @@ function bookmark(argsArray) {
             }
         }
         for (i = 0; i < bookmarkListArrayFiltered.length; i++) {
-            block_log(bookmarkListArrayFiltered[i].replace(/;/g, "<br>").replace(/"/g, "")/*.replace(/ /g, "")*/.replace(/=/g, '", URL: ').replace("bookmark", 'Name: "'))
+            block_log(bookmarkListArrayFiltered[i]
+                .replace(/;/g, "<br>")
+                .replace(/"/g, "")
+                .replace(/=/g, ', URL: ')
+                .replace("bookmark", 'Name: '))
         }
     } else if (main == "help" || main == "?" || main == "--help" || main == "-h") {
         block_log("bookmark - the websh bookmark tool<br><br> Subcommands:<br><br>  add, or new - create a bookmark<br>  remove - remove the specified bookmark<br>  list - list all bookmarks<br>  open - open the specified bookmark<br><br> Examples:<br><br>  Open a bookmark named 'GitHub':<br>   `bk open GitHub`<br>  Remove a bookmark named 'GitHub':<br>   `bk remove GitHub`")
