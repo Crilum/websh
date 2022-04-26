@@ -489,6 +489,30 @@ function theme(argsArray) {
         document.cookie = `theme-${sub}-themeTermColor=${themeTermColor}; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure`
         document.cookie = `theme-${sub}-themeBgColor=${themeBgColor}; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure`
         document.cookie = `theme-${sub}-themeTextBgColor=${themeTextBgColor}; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure`
+    } else if (main == "export") {
+        let themeTextColor = document.cookie
+            .split('; ')
+            .find(row => row.startsWith(`theme-${sub}-themeTextColor=`.split(" ").join(""))
+            ).split('=')[1]
+        let themeTermColor = document.cookie
+            .split('; ')
+            .find(row => row.startsWith(`theme-${sub}-themeTermColor=`.split(" ").join(""))
+            ).split('=')[1]
+        let themeBgColor = document.cookie
+            .split('; ')
+            .find(row => row.startsWith(`theme-${sub}-themeBgColor=`.split(" ").join(""))
+            ).split('=')[1]
+        let themeTextBgColor = document.cookie
+            .split('; ')
+            .find(row => row.startsWith(`theme-${sub}-themeTextBgColor=`.split(" ").join(""))
+            ).split('=')[1]
+        var exportFile = new Blob([`themeName=${sub}
+themeTextColor=${themeTextColor}
+themeTermColor=${themeTermColor}
+themeBgColor=${themeBgColor}
+themeTextBgColor=${themeTextBgColor}`],
+            { type: "text/plain;charset=utf-8" });
+        saveAs(exportFile, `websh-theme-${sub}.txt`)
     } else if (main == "inport") {
         document.getElementById("fileInput").click()
     } else if (main == "help") {
