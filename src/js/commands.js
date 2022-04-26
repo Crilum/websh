@@ -332,10 +332,12 @@ function theme(argsArray) {
     main = argsArray[0]
     sub = argsArray[1]
     if (main == "new") {
+        document.getElementById("themeTitle").textContent = "New Theme:"
         document.getElementById("themeName").value = ""
         document.getElementById("themeTextColor").value = ""
         document.getElementById("themeTermColor").value = ""
         document.getElementById("themeBgColor").value = ""
+        document.getElementById("themeTextBgColor").value = ""
         $('#themeBox').show();
 
         document.getElementById("themeAddOk").addEventListener('click', (e) => {
