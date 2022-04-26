@@ -36,6 +36,7 @@ function submit_command() {
 
     command = input.split(" ")[0];
 	args = input.replace(command, "")
+	lastCommand = command + args;
 	argsArray = input
 		.replace(command, "")
 		.replace(" ", "")

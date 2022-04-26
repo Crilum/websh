@@ -63,25 +63,14 @@ function github(args) {
         window.open("https://github.com/");
     }
 }
-/*
-// Print text
-function echo(args) {
-    msg = args+[]
-    block_log(msg.replace(/,/g, " "))
-}
 
-function ec() {
-    cmd = input.split(" ")[0]
-    msg = input.replace(cmd, "")
-
-    block_log(msg)
-}
-*/
 function help() {
     block_log(`websh: the modern webshell emulator
     <br/><br/> websh tools:
     <br/><br/> \`echo\` - print specified text
     <br/>  \`clock\` - print time
+    <br>  \`clr\`, or \`clear\` - clear the terminal
+    <br>  \`rel\`, or \`reload\` - reload the page 
     <br/>  \`link\` - open the specified full URL, i.e. 'https://github.com'
     <br/>  \`bk\`, \`bookmark\` - Create, manage, and use websh bookmarks. \`bookmark help\` for more info.
     <br>  \`theme\` - set terminal theme. \`theme help\` for more info.
@@ -216,11 +205,60 @@ function theme(argsArray) {
         $('#themeBox').show();
 
         document.getElementById("themeAddOk").addEventListener('click', (e) => {
-            var themeName = document.getElementById("themeName").value
-            var themeTextColor = document.getElementById("themeTextColor").value
-            var themeTermColor = document.getElementById("themeTermColor").value
-            var themeBgColor = document.getElementById("themeBgColor").value
+            if (theme("list").includes(document.getElementById("themeName").value)) {
+
+            }
+            var themeName = document.getElementById("themeName").value.replace(/ /g, "")
+            var themeTextColor = document.getElementById("themeTextColor").value.replace(/ /g, "")
+            var themeTermColor = document.getElementById("themeTermColor").value.replace(/ /g, "")
+            var themeBgColor = document.getElementById("themeBgColor").value.replace(/ /g, "")
             var themeTextBgColor = document.getElementById("themeTextBgColor").value
+            document.cookie = `theme-${themeName}-themeTextColor=${themeTextColor}; SameSite=None; Secure`
+            document.cookie = `theme-${themeName}-themeTermColor=${themeTermColor}; SameSite=None; Secure`
+            document.cookie = `theme-${themeName}-themeBgColor=${themeBgColor}; SameSite=None; Secure`
+            document.cookie = `theme-${themeName}-themeTextBgColor=${themeTextBgColor}; SameSite=None; Secure`
+            $('#themeBox').hide()
+        })
+        document.getElementById("themeAddCancel").addEventListener('click', (e) => {
+            $('#themeBox').hide()
+        })
+    } else if (main == "edit") {
+        themeLoad = document.cookie
+        themeLoadArray = themeLoad
+            .split(";")
+        themeLoadArrayFiltered = new Array()
+        a = 0
+        for (i = 0; i < themeLoadArray.length; i++) {
+            if (themeLoadArray[i].includes(`theme-${sub}`)) {
+                themeLoadArrayFiltered[a] = themeLoadArray[i]
+                a++
+            }
+        }
+        //set theme vars
+        themeTextColor = themeLoadArrayFiltered[0].replace(`theme-${sub}-themeTextColor=`, "").replace(/ /g, "")
+        themeTermColor = themeLoadArrayFiltered[1].replace(`theme-${sub}-themeTermColor=`, "").replace(/ /g, "")
+        themeBgColor = themeLoadArrayFiltered[2].replace(`theme-${sub}-themeBgColor=`, "").replace(/ /g, "")
+        themeTextBgColor = themeLoadArrayFiltered[3].replace(`theme-${sub}-themeTextBgColor=`, "").replace(/ /g, "")
+        document.getElementById("themeTitle").textContent = `Settings for ${sub}:`
+        document.getElementById("themeName").value = sub
+        document.getElementById("themeTextColor").value = themeTextColor
+        document.getElementById("themeTermColor").value = themeTermColor
+        document.getElementById("themeBgColor").value = themeBgColor
+        document.getElementById("themeTextBgColor").value = themeTextBgColor
+        $('#themeBox').show();
+
+        document.getElementById("themeAddOk").addEventListener('click', (e) => {
+            var themeName = document.getElementById("themeName").value.replace(/ /g, "")
+            var themeTextColor = document.getElementById("themeTextColor").value.replace(/ /g, "")
+            var themeTermColor = document.getElementById("themeTermColor").value.replace(/ /g, "")
+            var themeBgColor = document.getElementById("themeBgColor").value.replace(/ /g, "")
+            var themeTextBgColor = document.getElementById("themeTextBgColor").value.replace(/ /g, "")
+            // Delete the theme
+            document.cookie = `theme-${sub}-themeTextColor=${themeTextColor}; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure`
+            document.cookie = `theme-${sub}-themeTermColor=${themeTermColor}; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure`
+            document.cookie = `theme-${sub}-themeBgColor=${themeBgColor}; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure`
+            document.cookie = `theme-${sub}-themeTextBgColor=${themeTextBgColor}; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure`
+            // Save the new theme
             document.cookie = `theme-${themeName}-themeTextColor=${themeTextColor}; SameSite=None; Secure`
             document.cookie = `theme-${themeName}-themeTermColor=${themeTermColor}; SameSite=None; Secure`
             document.cookie = `theme-${themeName}-themeBgColor=${themeBgColor}; SameSite=None; Secure`
@@ -256,7 +294,14 @@ function theme(argsArray) {
             }
         }
         for (i = 0; i < themeListArrayFiltered.length; i++) {
-            block_log(themeListArrayFiltered[i].replace(/;/g, "<br>").replace(/"/g, "").replace(/=/g, '", Theme code: ').replace("bookmark", 'Name: "'))
+            block_log(themeListArrayFiltered[i]
+                .replace(/;/g, "<br>")
+                .replace(/"/g, "")
+                .replace("-themeTextColor=", ', Text color: ')
+                .replace("-themeTermColor=", ', Terminal color: ')
+                .replace("-themeBgColor=", ', Background color: ')
+                .replace("-themeTextBgColor=", ', Text background color: ')
+                .replace("theme-", 'Name: '))
         }
 
     } else if (main == "load") {
@@ -365,4 +410,9 @@ function snap(argsArray) {
     } else {
         error("E: you're not using Linux, so you can't use snapd!")
     }
+}
+
+rel = reload
+function reload() {
+    location.reload()
 }
