@@ -518,14 +518,14 @@ themeBgColor=${themeBgColor}
 themeTextBgColor=${themeTextBgColor}`],
             { type: "text/plain;charset=utf-8" });
         saveAs(exportFile, `websh-theme-${sub}.txt`)
-    } else if (main == "inport") {
+    } else if (main == "import") {
         document.getElementById("fileInput").click()
     } else if (main == "help") {
         block_log(`theme - the websh theme tool
         <br><br> Subcommands:
         <br><br>  new - create a new theme
         <br>  load - load a saved theme
-        <br>  inport - inport a downloaded theme
+        <br>  import - import a downloaded theme
         <br>  export - download a saved theme
         <br>  set - load a built-in theme
         <br>  delete - delete a saved theme
@@ -536,13 +536,13 @@ themeTextBgColor=${themeTextBgColor}`],
         <br>  \`theme load SeaGreen\` - loads a user-created theme called 'SeaGreen'
         <br>  \`theme delete SeaGreen\` - deletes a user-created theme called 'SeaGreen'
         <br>  \`theme export SeaGreen\` - exports a user-created theme called 'SeaGreen'
-        <br>  \`theme inport\` - inport a downloaded theme`)
+        <br>  \`theme import\` - import a downloaded theme`)
     } else {
         error("E: no argument specified, or bad argument!")
     }
 }
 
-function getInportedTheme() {
+function getImportedTheme() {
     const content = document.querySelector('.content');
     const [file] = document.querySelector('input[type=file]').files;
     const reader = new FileReader();
