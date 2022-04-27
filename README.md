@@ -19,8 +19,9 @@ The web powered shell emulator
   - export themes
   - all your themes are **saved as cookies**, so you don't have to be importing/exporting all the time!
 - Make and manage **bookmarks**[^1] with the built-in bookmark tool!
-- Type commands before you **even load the page** with parameters[^2]!
-- Open the VS Code [web editor](https://vscode.dev), *or* open VS Code **locally on your computer**!
+- Type commands before you **even load the page** with parameters![^2]
+- Open the VS Code [web editor](https://vscode.dev), *or* open VS Code **locally on your computer**![^3]
+- Open snaps **locally** in the **Snap Store**![^4]
 ## Usage
 ```
 $ help
@@ -70,3 +71,5 @@ This `help` is probably out of date. To get the newest `help`, [click here](http
 
 [^1]: websh Bookmarks (stored as cookies), not browser bookmarks
 [^2]: You can use URL parameters to run commands while the page is loading, e.g. [`https://crilum.github.io/websh/?command=echo Hey, this command was run via URL!&command=time`](https://crilum.github.io/websh/?command=echo%20Hey,%20this%20command%20was%20run%20via%20URL!&command=time)
+[^3]: Requires user to have [VS Code](https://code.visualstudio.com) installed locally on their computer
+[^4]: Requires user to be running a Linux system with snapd (as well as the Snap Store) installed. 
