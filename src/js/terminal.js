@@ -27,6 +27,54 @@ function error(message) {
 	new_block()
 }
 
+function submit_command_from_param(arg) {
+    var input = arg;
+	document.getElementById("input_source").value = "";
+
+    new_block();
+
+    command = input.split(" ")[0];
+	args = input.replace(command, "").replace(" ", "")
+	lastCommand = command + input.replace(command, "");
+	argsArray = input
+		.replace(command, "")
+		.replace(" ", "")
+		.split(" ")
+    if (typeof window[command] === "function" 
+		&& command == "bk" 
+		|| command == "bookmark"
+		|| command == "theme"
+		|| command == "code"
+		|| command == "vs"
+		|| command == "vscode"
+		|| command == "snap"
+		|| command == "lds"
+		|| command == "churchofjesuschrist"
+		|| command == "r"
+		|| command == "reddit") {
+        block_log(config.shellPrompt + command + " " + args);
+		window[command](argsArray);
+        lastCommand = command + input.replace(command, "");
+    } else if (typeof window[command] === "function") {
+		block_log(config.shellPrompt + command + " " + args);
+		window[command](args);
+        lastCommand = command + input.replace(command, "");
+	} else if (command != "") {
+        block_log("websh: " + command + ": command not found");
+		lastCommand = command + input.replace(command, "");
+    }
+}
+
+function runParameters(params) {
+	const url = window.location.search
+	const urlParams = new URLSearchParams(url);
+	for (let p of urlParams) {
+		console.debug(p);
+		console.log(`Executing '${p[1]}'`)
+		submit_command_from_param(p[1]);		
+	}
+}
+
 function submit_command() {
     if (!(event.keyCode === 13)) return;
     var input = document.getElementById("input_source").value;

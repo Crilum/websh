@@ -622,3 +622,6 @@ rel = reload
 function reload() {
     location.reload()
 }
+
+// Run params, if any
+runParameters()
