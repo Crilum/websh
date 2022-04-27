@@ -4,6 +4,23 @@ The web powered shell emulator
 
 ![websh gif](pics/websh-showoff.gif)
 
+## Features
+- 8 **Search Engines** supported:
+  - [Google](https://google.com) (search, or jump to site)
+  - [DuckDuckGo](https://duckduckgo.com) (search, or jump to site)
+  - [GitHub](https://github.com) (search, or jump to site)
+  - [Wikipedia](https://wikipedia.org) (search, or jump to site)
+  - [Reddit](https://reddit.com) (search, jump to site, or open specified subreddit)
+  - [Thingiverse](https://thingiverse.com) (search, or jump to site)
+  - [Amazon](https://amazon.com) (search, or jump to site)
+  - [ChurchofJesusChrist.org](https://churchofjesuschrist.org) (search, jump to site, or open specified book/chapter of the Book of Mormon)
+- Make your own **custom themes**!
+  - import themes
+  - export themes
+  - all your themes are **saved as cookies**, so you don't have to be importing/exporting all the time!
+- Make and manage **bookmarks**[^1] with the built-in bookmark tool!
+- Type commands before you **even load the page** with parameters[^2]!
+- Open the VS Code [web editor](https://vscode.dev), *or* open VS Code **locally on your computer**!
 ## Usage
 ```
 $ help
@@ -42,7 +59,7 @@ Settings:
 
 Note: for color setting use CSS Colors, HEX Codes, or rgb() Colors.
 ```
-This `help` is probably out of date. To get the newest `help`, open a [websh Terminal](https://crilum.github.io/websh), and type `help`.
+This `help` is probably out of date. To get the newest `help`, [click here](https://crilum.github.io/websh/?command=help).
 
 ### Credits
 - Big thanks to [@EmDev21](https://github.com/EmDev21) for creating the [original web terminal](https://github.com/EmDev21/Dollar) that this project is based off of!
@@ -50,3 +67,6 @@ This `help` is probably out of date. To get the newest `help`, open a [websh Ter
 
 
 #### Note: this is kinda beta right now, so expect some shenanigans...
+
+[^1]: websh Bookmarks (stored as cookies), not browser bookmarks
+[^2]: You can use URL parameters to run commands while the page is loading, e.g. [`https://crilum.github.io/websh/?command=echo Hey, this command was run via URL!&command=time`](https://crilum.github.io/websh/?command=echo%20Hey,%20this%20command%20was%20run%20via%20URL!&command=time)
