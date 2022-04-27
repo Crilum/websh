@@ -191,6 +191,7 @@ function reddit(argsArray) {
 }
 
 function help() {
+    const rawURL = window.location.origin
     block_log(`websh: the modern webshell emulator
     <br/><br/> websh tools:
     <br/><br/> \`echo\` - print specified text
@@ -215,8 +216,12 @@ function help() {
     <br/><br/>  \`textcolor\` - set the terminal text color
     <br/>  \`bgcolor\` - Set the background color
     <br/>  \`termcolor\` - Set the Terminal color
-    <br>  \`textboxcolor\` - set the color of text boxes
-    <br/><br/>Note: for color setting use CSS Colors, HEX Codes, or rgb() Colors.<br/>`)
+    <br>   \`textboxcolor\` - set the color of text boxes
+    <br/><br/>Note: for color setting use CSS Colors, HEX Codes, or rgb() Colors.
+    <br><br> Using websh with URL parameters:
+    <br><br>  You can use URL parameters to run commands while the page is loading, e.g. \`<a href="${rawURL}/?command=echo Hey, this command was run via URL!&command=time" target="_blank">${rawURL}/?command=echo Hey, this command was run via URL!&command=time<a/>\`
+    <br>  Basically, write \`?command=yourCommand\` after the URL (${rawURL}/), and use \`&command=yourCommand\` after the first command, and thereafter.
+    <br>There isn't a maximum number of commands you can specify (until you hit the browser URL size limit of course), but it's <a href="https://stackoverflow.com/q/417142" target="_blank">best to keep the number of chars in your URL below 2000<a/>.<br/>`)
 }
 
 
