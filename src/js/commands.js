@@ -192,7 +192,15 @@ function reddit(argsArray) {
 
 function help() {
     const rawURL = window.location.origin
-    const textColor = window.getComputedStyle(document.getElementById("input")).color;
+    if (document.cookie.split('; ').find(row => row.startsWith(`textcolor=`.split(" ").join(""))).split("=")[1] != undefined) {
+        textColor = document.cookie
+            .split('; ')
+            .find(row => row.startsWith(`textcolor=`.split(" ").join(""))
+            ).split('=')[1]
+    } else {
+    textColor = window.getComputedStyle(document.getElementById("input")).color;
+    }
+    // Actual help
     block_log(`websh: the modern webshell emulator
     <br/><br/> websh tools:
     <br/><br/> \`echo\` - print specified text
