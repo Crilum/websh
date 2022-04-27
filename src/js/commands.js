@@ -218,6 +218,7 @@ function help() {
     <br/>  \`bgcolor\` - Set the background color
     <br/>  \`termcolor\` - Set the Terminal color
     <br>   \`textboxcolor\` - set the color of text boxes
+    <br>   \`clrpms\` - clear URL parameters
     <br/><br/>Note: for color setting use CSS Colors, HEX Codes, or rgb() Colors.
     <br><br> Using websh with URL parameters:
     <br><br>  You can use URL parameters to run commands while the page is loading, e.g. \`<a href="${rawURL}/?command=echo Hey, this command was run via URL!&command=time" target="_blank">${rawURL}/?command=echo Hey, this command was run via URL!&command=time<a/><font color="${textColor}">\`
@@ -275,6 +276,15 @@ function link(args) {
     }
 }
 
+clrpms = clearParamCommands
+function clearParamCommands(args) {
+    if (window.location.href != window.location.origin + "/"
+    && window.location.href != window.location.origin) {
+    window.location.href = window.location.origin
+    } else {
+        block_log("No parameters to clear.")
+    }
+}
 bk = bookmark
 function bookmark(argsArray) {
     main = argsArray[0]
