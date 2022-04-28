@@ -212,7 +212,7 @@ function help() {
     <br>  \`theme\` - set terminal theme. \`theme help\` for more info.
     <br>  \`vscode\`, \`code\`, or \`vs\` - Use VS Code in your browser, or on your computer.
     <br>  \`snap\` - open snaps in the Snap Store
-    <br/><br/> Search engines:
+    <br/><br/> Search engines/web tools:
     <br/><br/>  \`g\`, or \`google\` - go to https://google.com, or search for ARGS
     <br/>  \`s\`, \`search\`, \`d\`, \`ddg\`, or \`duckduckgo\` - go to https://duckduckgo.com, or search for ARGS
     <br/>  \`w\`, or \`wikipedia\` - go to https://wikipedia.org, or search for ARGS
@@ -221,6 +221,7 @@ function help() {
     <br/>  \`r\`, or \`reddit\` - go to https://reddit.com, open ARGS subreddit, or search for ARGS. see \`r help\` for more info
     <br>   \`t\`, or \`thingiverse\` - go to https://thingiverse.com, or search for ARGS
     <br>   \`lds\`, or \`churchofjesuschrist\` - go to https://churchofjesuschrist.org, open ARGS book/chapter of the Book of Mormon, or search for ARGS. see \`lds help\` for more info
+    <br>   \`usps\` - search for ARGS, track ARGS. see \`usps help\` for more info
     <br/><br/> Settings:
     <br/><br/>  \`textcolor\` - set the terminal text color
     <br/>  \`bgcolor\` - Set the background color
@@ -234,6 +235,37 @@ function help() {
     <br>There isn't a maximum number of commands you can specify (until you hit the browser URL size limit of course), but it's <font/><a href="https://stackoverflow.com/q/417142" target="_blank">best to keep the number of chars in your URL below 2000<a/><font color="${textColor}">.<br/><font>`)
 }
 
+function usps(argsArray) {
+    const main = argsArray[0]
+    const sub = argsArray[1]
+    if (main == "track") {
+        argsArrayClone = argsArray.map((x) => x)
+        argsArrayClone.shift();
+        console.debug("New argsArray:" + argsArrayClone)
+        rawTrackUrl = `https://tools.usps.com/go/TrackConfirmAction?tLabels=${argsArrayClone[0]}`
+        console.debug("Before:" + rawTrackUrl)
+        for (var i = 1; i < argsArrayClone.length; i++) {
+            rawTrackUrl = `${rawTrackUrl}&tLabels=${argsArrayClone[i]}`
+            console.debug("While:" + rawTrackUrl)
+        }
+        console.debug("After:" + rawTrackUrl)
+        window.open(rawTrackUrl)
+    } else if (main == "search") {
+        window.open(`https://www.usps.com/search/results.htm?keyword=${args.replace(main, "")}`)
+    } else if (main == "help") {
+        block_log(`usps - track packages and search on usps.com
+        <br><br>Subcommands:
+        <br><br>\`track\` - track ARGS packages. You can specify up to 35 tracking numbers, separated by spaces.
+        <br>\`search\` - search for ARGS on usps.com
+        <br>\`help\` - print this help
+        <br><br>Examples:
+        <br><br>\`usps track 28934792836592\` - track tracking number '28934792836592' (not a real tracking number)
+        <br>\`usps search PO Boxes\` - search for 'PO Boxes' on usps.com`)
+    } else {
+        error("E: no argument specified, or bad argument!")
+    }
+
+}
 
 textcolor = setTxtColor
 set_txtColor = setTxtColor

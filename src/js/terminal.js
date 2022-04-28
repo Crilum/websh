@@ -51,7 +51,8 @@ function submit_command_from_param(arg) {
 		|| command == "lds"
 		|| command == "churchofjesuschrist"
 		|| command == "r"
-		|| command == "reddit") {
+		|| command == "reddit"
+		|| command == "usps") {
         block_log(config.shellPrompt + command + " " + args);
 		window[command](argsArray);
         lastCommand = command + input.replace(command, "");
@@ -69,7 +70,7 @@ function runParameters(params) {
 	const url = window.location.search
 	const urlParams = new URLSearchParams(url);
 	for (let p of urlParams) {
-		console.debug(p);
+		//console.debug(p);
 		console.log(`Executing '${p[1]}'`)
 		submit_command_from_param(p[1]);		
 	}
@@ -100,7 +101,8 @@ function submit_command() {
 		|| command == "lds"
 		|| command == "churchofjesuschrist"
 		|| command == "r"
-		|| command == "reddit") {
+		|| command == "reddit"
+		|| command == "usps") {
         block_log(config.shellPrompt + command + " " + args);
 		window[command](argsArray);
         lastCommand = command + input.replace(command, "");
