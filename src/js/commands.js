@@ -190,6 +190,35 @@ function reddit(argsArray) {
     }
 }
 
+so = stackoverflow
+function stackoverflow(args) {
+    if (args != undefined && args != "") {
+        search = args
+            .replace("+", "%2B")
+            .replace(" ", "+")
+            .replace("&", "%26")
+            .replace("#", "%23")
+        window.open("https://stackoverflow.com/search?q=" + search);
+    } else {
+        window.open("https://stackoverflow.com/");
+    }
+}
+
+se = stackexchange
+function stackexchange(args) {
+    if (args != undefined && args != "") {
+        search = args
+            .replace("+", "%2B")
+            .replace(" ", "+")
+            .replace("&", "%26")
+            .replace("#", "%23")
+        window.open("https://stackexchange.com/search?q=" + search);
+    } else {
+        window.open("https://stackexchange.com/");
+    }
+}
+
+
 function help() {
     const rawURL = window.location.origin
     if (document.cookie.split('; ').find(row => row.startsWith(`textcolor=`.split(" ").join(""))).split("=")[1] != undefined) {
@@ -222,6 +251,8 @@ function help() {
     <br>   \`t\`, or \`thingiverse\` - go to https://thingiverse.com, or search for ARGS
     <br>   \`lds\`, or \`churchofjesuschrist\` - go to https://churchofjesuschrist.org, open ARGS book/chapter of the Book of Mormon, or search for ARGS. see \`lds help\` for more info
     <br>   \`usps\` - search for ARGS, track ARGS. see \`usps help\` for more info
+    <br>   \`so\`, \`stackoverflow\` - go to https://stackoverflow.com, or search for ARGS
+    <br>   \`se\`, \`stackexchange\` - go to https://stackexchange.com, or search for ARGS. Search includes sites like askubuntu.com, superuser.com, apple.stackexchange.com, and many other sites. to see full list, go to <a href="https://stackexchange.com/sites" target="_blank">https://stackexchange.com/sites<a/>
     <br/><br/> Settings:
     <br/><br/>  \`textcolor\` - set the terminal text color
     <br/>  \`bgcolor\` - Set the background color
