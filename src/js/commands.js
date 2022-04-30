@@ -63,8 +63,16 @@ function wikipedia(args) {
 
 // Search on Github
 gh = github;
-function github(args) {
-    if (args != undefined && args != "") {
+function github(argsArray) {
+    main = argsArray[0]
+    sub = argsArray[1]
+    if (main == "open") {
+        argsArraySplit = sub.split("/")
+        user = argsArraySplit[0]
+        repo = argsArraySplit[1] 
+        window.open(`https://github.com/${user}/${repo}`)
+    } else {
+        if (args != undefined && args != "") {
         search = args
             .replace("+", "%2B")
             .replace(" ", "+")
@@ -74,6 +82,7 @@ function github(args) {
     } else {
         window.open("https://github.com/");
     }
+}
 }
 
 // Search on Thingiverse
