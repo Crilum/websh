@@ -205,3 +205,61 @@ input {
     }
     
 }
+
+#yt {
+    width: 51vw;
+    height: 300px;
+    box-shadow: 1px 1px 10px;
+    border-radius: 4px;
+    /*padding-left: 0.5em;
+    padding-bottom: 0.5em;*/
+    padding: 0.5em;
+    vertical-align: middle;
+    overflow:auto; 
+    position: fixed;
+    top:1%;
+    left: 15px;
+    background-color: var(--prompt-bg-color);
+    color: var(--text-color);
+}
+
+#yt iframe {
+    width: 99.5%;
+    height: 98.5%;
+    /*width: 515px;
+    height: 295px;*/
+    align-self: center;
+}
+
+#ytClose {
+    background-color: var(--text-color);
+    border-radius: 4px;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 25px;
+    height: 25px;
+}
+
+#yt button:hover {
+    animation: background-fade 0.6s forwards;
+    -webkit-animation: background-fade 0.6s forwards;
+    -moz-animation: background-fade 0.6s forwards;
+}
+
+@-webkit-keyframes background-fade {
+    100% {
+        background:rgb(46, 0, 153);
+    }
+}
+@-moz-keyframes background-fade {
+    100% {
+        background:rgb(46, 0, 153);
+    }
+}
+@keyframes background-fade {
+    100% {
+        background:rgb(46, 0, 153);
+    }
+    
+}

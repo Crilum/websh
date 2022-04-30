@@ -54,7 +54,9 @@ function submit_command_from_param(arg) {
 		|| command == "reddit"
 		|| command == "usps"
 		|| command == "gh"
-		|| command == "github") {
+		|| command == "github"
+		|| command == "yt"
+		|| command == "youtube") {
         block_log(config.shellPrompt + command + " " + args);
 		window[command](argsArray);
         lastCommand = command + input.replace(command, "");
@@ -106,7 +108,9 @@ function submit_command() {
 		|| command == "reddit"
 		|| command == "usps"
 		|| command == "gh"
-		|| command == "github") {
+		|| command == "github"
+		|| command == "yt"
+		|| command == "youtube") {
         block_log(config.shellPrompt + command + " " + args);
 		window[command](argsArray);
         lastCommand = command + input.replace(command, "");

@@ -227,6 +227,34 @@ function stackexchange(args) {
     }
 }
 
+yt = youtube
+function youtube(argsArray) {
+    main = argsArray[0]
+    sub = argsArray[1]
+    if (main == "watch") {
+        if (sub.includes("/watch?")) {
+            vidId = sub.split("/")[3].replace("watch?v=", "")
+        } else if (sub.includes("://")) {
+            vidId = sub.split("/")[3]
+        } else {
+            vidId = sub
+        }
+        
+        document.getElementById("yt").
+            innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + vidId + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><button id="ytClose">🗙<button/>'
+        document.getElementById("ytClose").addEventListener("click", (e) => {
+            $('#yt').hide();
+        })
+        $("#yt").show()
+    } else if (main == "help") {
+        block_log(`yt, youtube - use youtube inside of websh
+        <br><br>Subcommands:
+        <br><br>\`watch\` - watch ARGS inside of websh. argument can be video id, or a link.
+        <br>\`help\` - print this help.
+        <br><br>Examples:
+        <br><br>\`yt watch https://youtu.be/eoQYL4RHJkw\` or \`yt watch eoQYL4RHJkw\` - watch 'https://youtu.be/eoQYL4RHJkw' on youtube (inside of websh)`)
+    }
+}
 
 function help() {
     const rawURL = window.location.origin
