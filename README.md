@@ -60,7 +60,7 @@ Settings:
 
 Note: for color setting use CSS Colors, HEX Codes, or rgb() Colors.
 ```
-This `help` is probably out of date. To get the newest `help`, [click here](https://crilum.github.io/websh/?command=help).
+This `help` is probably out of date. To get the newest `help`, [click here](https://websh.crilum.tk/?command=help).
 
 ### Credits
 - Big thanks to [@EmDev21](https://github.com/EmDev21) for creating the [original web terminal](https://github.com/EmDev21/Dollar) that this project is based off of!
@@ -71,6 +71,6 @@ This `help` is probably out of date. To get the newest `help`, [click here](http
 #### Note: this is kinda beta right now, so expect some shenanigans...
 
 [^1]: websh Bookmarks (stored as cookies), not browser bookmarks
-[^2]: You can use URL parameters to run commands while the page is loading, e.g. [`https://crilum.github.io/websh/?command=echo Hey, this command was run via URL!&command=time`](https://crilum.github.io/websh/?command=echo%20Hey,%20this%20command%20was%20run%20via%20URL!&command=time)
+[^2]: You can use URL parameters to run commands while the page is loading, e.g. [`https://websh.crilum.tk/?command=echo Hey, this command was run via URL!&command=time`](https://websh.crilum.tk/?command=echo%20Hey,%20this%20command%20was%20run%20via%20URL!&command=time)
 [^3]: Requires user to have [VS Code](https://code.visualstudio.com) installed locally on their computer
 [^4]: Requires user to be running a Linux system with snapd (as well as the Snap Store) installed. 
