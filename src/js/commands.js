@@ -257,15 +257,8 @@ function youtube(argsArray) {
 }
 
 function help() {
-    const rawURL = window.location.origin
-    if (document.cookie.split('; ').find(row => row.startsWith(`textcolor=`.split(" ").join(""))).split("=")[1] != undefined) {
-        textColor = document.cookie
-            .split('; ')
-            .find(row => row.startsWith(`textcolor=`.split(" ").join(""))
-            ).split('=')[1]
-    } else {
     textColor = window.getComputedStyle(document.getElementById("input")).color;
-    }
+    const rawURL = window.location.origin
     // Actual help
     block_log(`websh: the modern webshell emulator
     <br/><br/> websh tools:
@@ -289,7 +282,7 @@ function help() {
     <br>   \`lds\`, or \`churchofjesuschrist\` - go to https://churchofjesuschrist.org, open ARGS book/chapter of the Book of Mormon, or search for ARGS. see \`lds help\` for more info
     <br>   \`usps\` - search for ARGS, track ARGS. see \`usps help\` for more info
     <br>   \`so\`, \`stackoverflow\` - go to https://stackoverflow.com, or search for ARGS
-    <br>   \`se\`, \`stackexchange\` - go to https://stackexchange.com, or search for ARGS. Search includes sites like askubuntu.com, superuser.com, apple.stackexchange.com, and many other sites. to see full list, go to <a href="https://stackexchange.com/sites" target="_blank">https://stackexchange.com/sites<a/>
+    <br>   \`se\`, \`stackexchange\` - go to https://stackexchange.com, or search for ARGS. Search includes sites like askubuntu.com, superuser.com, apple.stackexchange.com, and many other sites. to see full list, go to <a href="https://stackexchange.com/sites" target="_blank">https://stackexchange.com/sites</a>
     <br/><br/> Settings:
     <br/><br/>  \`textcolor\` - set the terminal text color
     <br/>  \`bgcolor\` - Set the background color
@@ -298,9 +291,9 @@ function help() {
     <br>   \`clrpms\` - clear URL parameters
     <br/><br/>Note: for color setting use CSS Colors, HEX Codes, or rgb() Colors.
     <br><br> Using websh with URL parameters:
-    <br><br>  You can use URL parameters to run commands while the page is loading, e.g. \`<a href="${rawURL}/?command=echo Hey, this command was run via URL!&command=time" target="_blank">${rawURL}/?command=echo Hey, this command was run via URL!&command=time<a/><font color="${textColor}">\`
+    <br><br>  You can use URL parameters to run commands while the page is loading, e.g. \`<a href="${rawURL}/?command=echo Hey, this command was run via URL!&command=time" target="_blank">${rawURL}/?command=echo Hey, this command was run via URL!&command=time</a><style>color: ${textColor};</style>\`
     <br>  Basically, write \`?command=yourCommand\` after the URL (${rawURL}/), and use \`&command=yourCommand\` after the first command, and thereafter.
-    <br>There isn't a maximum number of commands you can specify (until you hit the browser URL size limit of course), but it's <font/><a href="https://stackoverflow.com/q/417142" target="_blank">best to keep the number of chars in your URL below 2000<a/><font color="${textColor}">.<br/><font>`)
+    <br>There isn't a maximum number of commands you can specify (until you hit the browser URL size limit of course), but it's </font><a href="https://stackoverflow.com/q/417142" target="_blank">best to keep the number of chars in your URL below 2000</a><style>color: ${textColor};</style>.<br>`)
 }
 
 function usps(argsArray) {
