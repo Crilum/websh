@@ -458,9 +458,6 @@ function theme(argsArray) {
         $('#themeBox').show();
 
         document.getElementById("themeAddOk").addEventListener('click', (e) => {
-            if (theme("list").includes(document.getElementById("themeName").value)) {
-
-            }
             var themeName = document.getElementById("themeName").value.replace(/ /g, "")
             var themeTextColor = document.getElementById("themeTextColor").value.replace(/ /g, "")
             var themeTermColor = document.getElementById("themeTermColor").value.replace(/ /g, "")
