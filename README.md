@@ -69,6 +69,7 @@ This `help` is probably out of date. To get the newest `help`, [click here](http
 
 
 #### Note: this is kinda beta right now, so expect some shenanigans...
+If you find any problems please [create a new issue](https://github.com/Crilum/websh/issues/new/choose).
 
 [^1]: websh Bookmarks (stored as cookies), not browser bookmarks
 [^2]: You can use URL parameters to run commands while the page is loading, e.g. [`https://websh.crilum.tk/?command=echo Hey, this command was run via URL!&command=time`](https://websh.crilum.tk/?command=echo%20Hey,%20this%20command%20was%20run%20via%20URL!&command=time)
