@@ -69,20 +69,20 @@ function github(argsArray) {
     if (main == "open") {
         argsArraySplit = sub.split("/")
         user = argsArraySplit[0]
-        repo = argsArraySplit[1] 
+        repo = argsArraySplit[1]
         window.open(`https://github.com/${user}/${repo}`)
     } else {
         if (args != undefined && args != "") {
-        search = args
-            .replace("+", "%2B")
-            .replace(" ", "+")
-            .replace("&", "%26")
-            .replace("#", "%23")
-        window.open("https://github.com/search?q=" + search);
-    } else {
-        window.open("https://github.com/");
+            search = args
+                .replace("+", "%2B")
+                .replace(" ", "+")
+                .replace("&", "%26")
+                .replace("#", "%23")
+            window.open("https://github.com/search?q=" + search);
+        } else {
+            window.open("https://github.com/");
+        }
     }
-}
 }
 
 // Search on Thingiverse
@@ -126,10 +126,10 @@ function churchofjesuschrist(argsArray) {
     if (main == "search" || main == "s" || main == "") {
         if (sub != undefined) {
             search = sub
-            .replace("+", "%2B")
-            .replace(" ", "+")
-            .replace("&", "%26")
-            .replace("#", "%23")
+                .replace("+", "%2B")
+                .replace(" ", "+")
+                .replace("&", "%26")
+                .replace("#", "%23")
             window.open("https://www.churchofjesuschrist.org/search?query=" + search);
         } else {
             window.open("https://www.churchofjesuschrist.org/");
@@ -239,7 +239,7 @@ function youtube(argsArray) {
         } else {
             vidId = sub
         }
-        
+
         document.getElementById("yt").
             innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + vidId + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><button id="ytClose">🗙<button/>'
         document.getElementById("ytClose").addEventListener("click", (e) => {
@@ -269,6 +269,7 @@ function help() {
     <br/>  \`link\` - open the specified full URL, i.e. 'https://github.com'
     <br/>  \`bk\`, \`bookmark\` - Create, manage, and use websh bookmarks. \`bookmark help\` for more info.
     <br>  \`theme\` - set terminal theme. \`theme help\` for more info.
+    <br>  \`wttr\`, \`weather\` - get the weather, powered by <a href="https://wttr.in">wttr.in</a>
     <br>  \`vscode\`, \`code\`, or \`vs\` - Use VS Code in your browser, or on your computer.
     <br>  \`snap\` - open snaps in the Snap Store
     <br/><br/> Search engines/web tools:
@@ -281,6 +282,7 @@ function help() {
     <br>   \`t\`, or \`thingiverse\` - go to https://thingiverse.com, or search for ARGS
     <br>   \`lds\`, or \`churchofjesuschrist\` - go to https://churchofjesuschrist.org, open ARGS book/chapter of the Book of Mormon, or search for ARGS. see \`lds help\` for more info
     <br>   \`usps\` - search for ARGS, track ARGS. see \`usps help\` for more info
+    <br>   \`ups\` - search for ARGS, track ARGS. see \`ups help\` for more info
     <br>   \`so\`, \`stackoverflow\` - go to https://stackoverflow.com, or search for ARGS
     <br>   \`se\`, \`stackexchange\` - go to https://stackexchange.com, or search for ARGS. Search includes sites like askubuntu.com, superuser.com, apple.stackexchange.com, and many other sites. to see full list, go to <a href="https://stackexchange.com/sites" target="_blank">https://stackexchange.com/sites</a>
     <br/><br/> Settings:
@@ -340,11 +342,11 @@ function ups(argsArray) {
         block_log(`ups - track a package or search on usps.com
         <br><br>Subcommands:
         <br><br>\`track\` - track ARGS packages. Unlike \`usps\`, you can only specify 1 tracking number.
-        <br>\`search\` - search for ARGS on usps.com
+        <br>\`search\` - search for ARGS on ups.com
         <br>\`help\` - print this help
         <br><br>Examples:
         <br><br>\`ups track 28934792836592\` - track tracking number '28934792836592' (not a real tracking number)
-        <br>\`ups search change my address\` - search for 'PO Boxes' on usps.com`)
+        <br>\`ups search change my address\` - search for 'change my address' on usps.com`)
     } else {
         window.open(`https://ups.com`)
     }
@@ -403,8 +405,8 @@ function link(args) {
 clrpms = clearParamCommands
 function clearParamCommands(args) {
     if (window.location.href != window.location.origin + "/"
-    && window.location.href != window.location.origin) {
-    window.location.href = window.location.origin
+        && window.location.href != window.location.origin) {
+        window.location.href = window.location.origin
     } else {
         block_log("No parameters to clear.")
     }
@@ -695,7 +697,7 @@ function getImportedTheme() {
         let themeTermColor = fileString[2].replace("themeTermColor=", '')
         let themeBgColor = fileString[3].replace("themeBgColor=", '')
         let themeTextBgColor = fileString[4].replace("themeTextBgColor=", '')
-        
+
         // set theme
 
         block_log(`Text Color: ${themeTextColor}
@@ -765,6 +767,56 @@ function snap(argsArray) {
 rel = reload
 function reload() {
     location.reload()
+}
+
+wttr = weather
+function weather(argsArray) {
+    main = argsArray[0]
+    sub = argsArray[1]
+    args = argsArray.toString().replace(/,/g, " ")
+    if (main == "help") {
+        block_log(`weather - Get the weather from <a href="https://wttr.in">wttr.in</a>
+        <br><br>How to use:
+        <br><br>wttr.in tries to get your location by IP, but you can specify what city you want to see the weather for by just typing the city name after the command: \`weather London\`.
+        <br>To change the temp/windspeed format ([a] auto (default), [u] imperial, [m] metric, [M] imperial, but meters/s), you can set the format setting: \`weather format m\`.
+        <br><br>Credit:
+        <br><br>Thanks to Igor Chubin (@chubin on GitHub) for creating wttr.in!`)
+    } else if (main == "format") {
+        if (sub == "auto") {
+            oldFmt = document.cookie
+                .split('; ')
+                .find(row => row.startsWith(`weatherFormat=`.split(" ").join(""))
+                ).split('=')[1]
+            document.cookie = `weatherFormat=${oldFmt}; Samesite=None; Secure; expires=Thu, 01 Jan 1970 00:00:00 GMT;`
+        } else {
+            document.cookie = `weatherFormat=${sub}; Samesite=None; Secure`
+        }
+    } else {
+        var format = ""
+        if (document.cookie.includes("weatherFormat=")) {
+            format = "?" + document.cookie
+                .split('; ')
+                .find(row => row.startsWith(`weatherFormat=`.split(" ").join(""))
+                ).split('=')[1]
+        }
+        url = `https://wttr.in/${args}${format}`
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                console.debug(xhr.status);
+                block_log(xhr.responseText
+                    .replace(/<script>/g, "")
+                    .replace(/Follow @igor_chubin/g, "")
+                    .replace(/<\/script>/g, "")
+                );
+
+            }
+        };
+
+        xhr.send();
+    }
 }
 
 // Run params, if any
