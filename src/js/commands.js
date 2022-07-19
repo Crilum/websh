@@ -792,6 +792,7 @@ function weather(argsArray) {
             document.cookie = `weatherFormat=${sub}; Samesite=None; Secure`
         }
     } else {
+	current_block.innerHTML = "<p id='tmp_loading_msg'>Loading Weather...</p>";
         var format = ""
         if (document.cookie.includes("weatherFormat=")) {
             format = "?" + document.cookie
@@ -806,6 +807,7 @@ function weather(argsArray) {
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 console.debug(xhr.status);
+		current_block.innerHTML = ""
                 block_log(xhr.responseText
                     .replace(/<script>/g, "")
                     .replace(/Follow @igor_chubin/g, "")
