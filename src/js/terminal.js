@@ -7,8 +7,11 @@ config = {
 document.getElementById("input_title").innerText = config.shellPrompt;
 document.getElementById('input_source').addEventListener('keyup', submit_command);
 document.getElementById('input_source').addEventListener('keyup', getLastCommand);
+document.getElementById('input_source').addEventListener('keydown', getPrevCommand);
 
 var current_block;
+var cmd_hist_curr_index = 0;
+var command_history = [ "" ];
 
 function new_block() {
     current_block = document.createElement("div");
@@ -63,14 +66,18 @@ function submit_command_from_param(arg) {
         block_log(config.shellPrompt + command + " " + args);
 		window[command](argsArray);
         lastCommand = command + input.replace(command, "");
+	addCommandToHist(input)
     } else if (typeof window[command] === "function") {
 		block_log(config.shellPrompt + command + " " + args);
 		window[command](args);
         lastCommand = command + input.replace(command, "");
+	addCommandToHist(input)
 	} else if (command != "") {
         block_log("websh: " + command + ": command not found");
 		lastCommand = command + input.replace(command, "");
+		addCommandToHist(input)
     }
+    cmd_hist_curr_index = 0;
 }
 
 function runParameters(params) {
@@ -79,7 +86,7 @@ function runParameters(params) {
 	for (let p of urlParams) {
 		//console.debug(p);
 		console.log(`Executing '${p[1]}'`)
-		submit_command_from_param(p[1]);		
+		submit_command_from_param(p[1]);
 	}
 }
 
@@ -120,22 +127,56 @@ function submit_command() {
         block_log(config.shellPrompt + command + " " + args);
 		window[command](argsArray);
         lastCommand = command + input.replace(command, "");
+	addCommandToHist(input)
     } else if (typeof window[command] === "function") {
 		block_log(config.shellPrompt + command + " " + args);
 		window[command](args);
         lastCommand = command + input.replace(command, "");
+	addCommandToHist(input)
 	} else if (command != "") {
         block_log("websh: " + command + ": command not found");
 		lastCommand = command + input.replace(command, "");
+		addCommandToHist(input)
     }
+    cmd_hist_curr_index = 0;
 }
 
+function addCommandToHist(input) {
+        command_history.shift()
+        command_history.unshift(command + input.replace(command, ""));
+        command_history.unshift("")
+}
 
 function getLastCommand() {
 	if (!(event.keyCode === 38)) return
 	if (lastCommand) {
 		document.getElementById("input_source").value = lastCommand
 	}
+}
+
+function getLastCommand() {
+	if (!(event.keyCode === 38)) return
+        if (command_history.length != 0) {
+		if (cmd_hist_curr_index <= command_history.length
+			&& command_history[(cmd_hist_curr_index + 1)]) {
+			cmd_hist_curr_index += 1;
+			document.getElementById("input_source").value = command_history[cmd_hist_curr_index];
+                } else {
+			return
+		}
+        }
+}
+
+function getPrevCommand() {
+        if (!(event.keyCode === 40)) return
+        if (command_history.length != 0) {
+                if (cmd_hist_curr_index > 0) {
+                        cmd_hist_curr_index -= 1;
+	                document.getElementById("input_source").value = command_history[cmd_hist_curr_index];
+                } else {
+                        return
+                }
+        }
 }
 
 cookies = document.cookie.split(";")
