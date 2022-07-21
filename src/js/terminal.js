@@ -142,9 +142,11 @@ function submit_command() {
 }
 
 function addCommandToHist(input) {
-        command_history.shift()
-        command_history.unshift(command + input.replace(command, ""));
-        command_history.unshift("")
+		if (command + input.replace(command, "") != command_history[1]) {
+			command_history.shift()
+        	command_history.unshift(command + input.replace(command, ""));
+			command_history.unshift("")
+		}
 }
 
 function getLastCommand() {
