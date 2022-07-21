@@ -558,6 +558,11 @@ function theme(argsArray) {
             textcolor("#3391ff")
             termcolor("#000")
             textboxcolor("rgb(59, 59, 59)")
+        } else if (sub == "black") {
+            bgcolor("black")
+            textcolor("grey")
+            termcolor("black")
+            textboxcolor("rgb(10, 10, 10)")
         }
     } else if (main == "list") {
         themeList = document.cookie
