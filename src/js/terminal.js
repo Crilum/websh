@@ -62,7 +62,8 @@ function submit_command_from_param(arg) {
 		|| command == "yt"
 		|| command == "youtube"
 		|| command == "wttr"
-		|| command == "weather") {
+		|| command == "weather"
+		|| command == "spotify") {
         block_log(config.shellPrompt + command + " " + args);
 		window[command](argsArray);
         lastCommand = command + input.replace(command, "");
@@ -123,16 +124,17 @@ function submit_command() {
 		|| command == "yt"
 		|| command == "youtube"
 		|| command == "wttr"
-		|| command == "weather") {
+		|| command == "weather"
+		|| command == "spotify") {
         block_log(config.shellPrompt + command + " " + args);
 		window[command](argsArray);
         lastCommand = command + input.replace(command, "");
-	addCommandToHist(input)
+		addCommandToHist(input)
     } else if (typeof window[command] === "function") {
 		block_log(config.shellPrompt + command + " " + args);
 		window[command](args);
         lastCommand = command + input.replace(command, "");
-	addCommandToHist(input)
+		addCommandToHist(input)
 	} else if (command != "") {
         block_log("websh: " + command + ": command not found");
 		lastCommand = command + input.replace(command, "");

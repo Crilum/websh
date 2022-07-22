@@ -563,6 +563,16 @@ function theme(argsArray) {
             textcolor("grey")
             termcolor("black")
             textboxcolor("rgb(10, 10, 10)")
+        } else if (sub == "dollar") {
+            bgcolor("#edae4f")
+            textcolor("#edae4f")
+            termcolor("#2a2a2a")
+            textboxcolor("rgb(59, 59, 59)")
+        } else if (sub == "white") {
+            bgcolor("#FFFFFF")
+            textcolor("#000000")
+            termcolor("#FFFFFF")
+            textboxcolor("#7F7F7F")
         }
     } else if (main == "list") {
         themeList = document.cookie
@@ -676,6 +686,12 @@ themeTextBgColor=${themeTextBgColor}`],
         <br>  set - load a built-in theme
         <br>  delete - delete a saved theme
         <br>  help - print this help
+        <br><br>Built-in themes:
+        <br><br>default - A nice blue-green combination
+        <br>teal-dark - A dark theme with teal-blue coloring
+        <br>black - Black, black, black. Grey text.
+        <br>white - White with black text
+        <br>dollar - A quite orange theme, taken from the screenshot on EmDev21/Dollar
         <br><br> Examples:
         <br><br>  \`theme set default\` - sets the default theme
         <br>  \`theme new\` - create a new theme
@@ -734,15 +750,22 @@ function vscode(argsArray) {
     main = argsArray[0]
     sub = argsArray[1]
     if (main == "local") {
-        window.open("vscode://open")
+        if (sub != "") {
+            window.open(`vscode://file${sub}`)
+        } else {
+            window.open("vscode://open")
+        }
     } else if (main == "help") {
-        block_log(`vscode, code, vs - the Visual Studio Code helper
+        block_log(`vscode, code, or vs - the Visual Studio Code helper
         <br><br> Subcommands:
-        <br><br>  \`local\` - open VS Code locally on your computer.
+        <br><br>  \`local\` - open VS Code locally on your computer. You can open local files too!
         <br>   Note: requires VS Code to be installed on your computer
         <br><br> Examples:
-        <br><br>  \`code\` - open 'https://vscode.dev'
-        <br>  \`code local\` - opens VS Code on your computer, with 'vscode://open'`)
+        <br><br>  \`vs Crilum/websh\` - open 'Crilum/websh' to edit.
+        <br>  \`code local /home/\${USER}/awesome.js\` - opens '/home/\${USER}/awesome.js' VS Code on your computer
+        <br>  \`vscode local /C:/users/user/awesome.js:20:5\` - opens '/C:/users/user/awesome.js' on line 20, column 5 VS Code on your computer`)
+    } else if (sub != "") {
+        window.open("https://vscode.dev/github/" + sub)
     } else {
         window.open("https://vscode.dev")
     }
