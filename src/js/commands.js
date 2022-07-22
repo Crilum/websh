@@ -762,8 +762,8 @@ function vscode(argsArray) {
         <br>   Note: requires VS Code to be installed on your computer
         <br><br> Examples:
         <br><br>  \`vs Crilum/websh\` - open 'Crilum/websh' to edit.
-        <br>  \`code local /home/\${USER}/awesome.js\` - opens '/home/\${USER}/awesome.js' VS Code on your computer
-        <br>  \`vscode local /C:/users/user/awesome.js:20:5\` - opens '/C:/users/user/awesome.js' on line 20, column 5 VS Code on your computer`)
+        <br>  \`code local /home/\${USER}/awesome.js\` - opens '/home/\${USER}/awesome.js' VS Code on your computer.
+        <br>  \`vscode local /C:/users/user/awesome.js:20:5\` - opens '/C:/users/user/awesome.js' at line 20, column 5 on your local VS Code.`)
     } else if (sub != "") {
         window.open("https://vscode.dev/github/" + sub)
     } else {
