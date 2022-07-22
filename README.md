@@ -67,8 +67,6 @@ This `help` is probably out of date. To get the newest `help`, [click here](http
 - Thanks to [@OrlatoDev](https://github.com/OrlatoDev) for letting me use their color setting code!
 - Thanks to Freepik on flaticon for the icon.
 
-
-#### Note: this is kinda beta right now, so expect some shenanigans...
 If you find any problems please [create a new issue](https://github.com/Crilum/websh/issues/new/choose).
 
 [^1]: websh Bookmarks (stored as cookies), not browser bookmarks
