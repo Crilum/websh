@@ -291,6 +291,7 @@ function help() {
     <br/>  \`termcolor\` - Set the Terminal color
     <br>   \`textboxcolor\` - set the color of text boxes
     <br>   \`clrpms\` - clear URL parameters
+    <br>   \`clrhist\` - clear history
     <br/><br/>Note: for color setting use CSS Colors, HEX Codes, or rgb() Colors.
     <br><br> Using websh with URL parameters:
     <br><br>  You can use URL parameters to run commands while the page is loading, e.g. \`<a href="${rawURL}/?command=echo Hey, this command was run via URL!&command=time" target="_blank">${rawURL}/?command=echo Hey, this command was run via URL!&command=time</a><style>color: ${textColor};</style>\`
@@ -764,8 +765,8 @@ function vscode(argsArray) {
         <br><br>  \`vs Crilum/websh\` - open 'Crilum/websh' to edit.
         <br>  \`code local /home/\${USER}/awesome.js\` - opens '/home/\${USER}/awesome.js' VS Code on your computer.
         <br>  \`vscode local /C:/users/user/awesome.js:20:5\` - opens '/C:/users/user/awesome.js' at line 20, column 5 on your local VS Code.`)
-    } else if (sub != "") {
-        window.open("https://vscode.dev/github/" + sub)
+    } else if (main != "") {
+        window.open("https://vscode.dev/github/" + main)
     } else {
         window.open("https://vscode.dev")
     }
@@ -820,7 +821,7 @@ function weather(argsArray) {
             document.cookie = `weatherFormat=${sub}; Samesite=None; Secure`
         }
     } else {
-	current_block.innerHTML = "<p id='tmp_loading_msg'>Loading Weather...</p>";
+        current_block.innerHTML = "<p id='tmp_loading_msg'>Loading Weather...</p>";
         var format = ""
         if (document.cookie.includes("weatherFormat=")) {
             format = "?" + document.cookie
@@ -835,7 +836,7 @@ function weather(argsArray) {
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 console.debug(xhr.status);
-		current_block.innerHTML = ""
+                current_block.innerHTML = ""
                 block_log(xhr.responseText
                     .replace(/<script>/g, "")
                     .replace(/Follow @igor_chubin/g, "")
@@ -846,6 +847,43 @@ function weather(argsArray) {
         };
 
         xhr.send();
+    }
+}
+
+function styleprompt() {
+    main = argsArray[0]
+    sub = argsArray[1]
+    if (main == "new") {
+        dialog = `<h5 class="textColor">Prompt Settings:<h5/>
+        <br>
+        <div id="dialogBoxInner">
+            <h7 class="textColor">Name:<h7/><br>
+            <input id="promptName" class="input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off" autofocus><br>
+            <h7 class="textColor">Prompt color:<h7/><br>
+            <input id="promptColor" class="input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off"><br>
+            <select name="promptType" id="promptType">
+                <option value="$">$</option>
+                <option value=">">></option>
+                <option value="#">#</option>
+            </select>
+            <button id="styleAddCancel" style="right: 55px;">Cancel</button>
+            <button id="styleAddOk" style="right: 5px;">Save</button>
+        </div>`
+        document.getElementById("dialogContainer").innerHTML = dialog
+        $('#dialogContainer').show()
+        document.getElementById("styleAddOk").addEventListener('click', (e) => {
+            var promptName = document.getElementById("promptName").value.replace(/ /g, "␠")
+            var promptColor = document.getElementById("promptColor").value.replace(/ /g, "")
+            //var themeTermColor = document.getElementById("themeTermColor").value.replace(/ /g, "")
+            var promptType = document.getElementById("promptType").value
+            document.cookie = `prompt-${promptName}-promptColor=${promptColor}; SameSite=None; Secure`
+            document.cookie = `prompt-${promptName}-promptType=${promptType}; SameSite=None; Secure`
+            $('#dialogContainer').hide()
+        })
+        document.getElementById("styleAddCancel").addEventListener('click', (e) => {
+            document.getElementById("dialogContainer").innerHTML = ""
+            $('#dialogContainer').hide()
+        })
     }
 }
 

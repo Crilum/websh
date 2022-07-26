@@ -1,6 +1,6 @@
 // Terminal config
 config = {
-    shellPrompt: "$ "
+	shellPrompt: "$ "
 }
 
 
@@ -11,18 +11,29 @@ document.getElementById('input_source').addEventListener('keydown', getPrevComma
 
 var current_block;
 var cmd_hist_curr_index = 0;
-var command_history = [ "" ];
+if (document.cookie
+	.split('; ')
+	.find(row => row.startsWith(`command_history=`.split(" ").join(""))
+	).split('=')[1] == "") {
+	var command_history = [""];
+} else {
+	var command_history = document.cookie
+	.split('; ')
+	.find(row => row.startsWith(`command_history=`.split(" ").join(""))
+	).split('=')[1].split(",")
+}
+
 
 function new_block() {
-    current_block = document.createElement("div");
-    current_block.classList.add("log");
-    document.getElementById('wrapper').appendChild(current_block);
+	current_block = document.createElement("div");
+	current_block.classList.add("log");
+	document.getElementById('wrapper').appendChild(current_block);
 }
 
 echo = block_log
 function block_log(message) {
-    current_block.innerHTML = "<p>" + message + "</p>";
-    new_block();
+	current_block.innerHTML = "<p>" + message + "</p>";
+	new_block();
 }
 
 function error(message) {
@@ -31,20 +42,20 @@ function error(message) {
 }
 
 function submit_command_from_param(arg) {
-    var input = arg;
+	var input = arg;
 	document.getElementById("input_source").value = "";
 
-    new_block();
+	new_block();
 
-    command = input.split(" ")[0];
+	command = input.split(" ")[0];
 	args = input.replace(command, "").replace(" ", "")
 	lastCommand = command + input.replace(command, "");
 	argsArray = input
 		.replace(command, "")
 		.replace(" ", "")
 		.split(" ")
-    if (typeof window[command] === "function" 
-		&& command == "bk" 
+	if (typeof window[command] === "function"
+		&& command == "bk"
 		|| command == "bookmark"
 		|| command == "theme"
 		|| command == "code"
@@ -63,22 +74,24 @@ function submit_command_from_param(arg) {
 		|| command == "youtube"
 		|| command == "wttr"
 		|| command == "weather"
-		|| command == "spotify") {
-        block_log(config.shellPrompt + command + " " + args);
-		window[command](argsArray);
-        lastCommand = command + input.replace(command, "");
-	addCommandToHist(input)
-    } else if (typeof window[command] === "function") {
+		|| command == "spotify"
+		|| command == "styleprompt") {
 		block_log(config.shellPrompt + command + " " + args);
-		window[command](args);
-        lastCommand = command + input.replace(command, "");
-	addCommandToHist(input)
-	} else if (command != "") {
-        block_log("websh: " + command + ": command not found");
+		window[command](argsArray);
 		lastCommand = command + input.replace(command, "");
 		addCommandToHist(input)
-    }
-    cmd_hist_curr_index = 0;
+	} else if (typeof window[command] === "function") {
+		block_log(config.shellPrompt + command + " " + args);
+		window[command](args);
+		lastCommand = command + input.replace(command, "");
+		addCommandToHist(input)
+	} else if (command != "") {
+		block_log("websh: " + command + ": command not found");
+		lastCommand = command + input.replace(command, "");
+		addCommandToHist(input)
+	}
+	cmd_hist_curr_index = 0;
+	saveHistAsCookie()
 }
 
 function runParameters(params) {
@@ -92,21 +105,21 @@ function runParameters(params) {
 }
 
 function submit_command() {
-    if (!(event.keyCode === 13)) return;
-    var input = document.getElementById("input_source").value;
+	if (!(event.keyCode === 13)) return;
+	var input = document.getElementById("input_source").value;
 	document.getElementById("input_source").value = "";
 
-    new_block();
+	new_block();
 
-    command = input.split(" ")[0];
+	command = input.split(" ")[0];
 	args = input.replace(command, "").replace(" ", "")
 	lastCommand = command + input.replace(command, "");
 	argsArray = input
 		.replace(command, "")
 		.replace(" ", "")
 		.split(" ")
-    if (typeof window[command] === "function" 
-		&& command == "bk" 
+	if (typeof window[command] === "function"
+		&& command == "bk"
 		|| command == "bookmark"
 		|| command == "theme"
 		|| command == "code"
@@ -125,62 +138,67 @@ function submit_command() {
 		|| command == "youtube"
 		|| command == "wttr"
 		|| command == "weather"
-		|| command == "spotify") {
-        block_log(config.shellPrompt + command + " " + args);
-		window[command](argsArray);
-        lastCommand = command + input.replace(command, "");
-		addCommandToHist(input)
-    } else if (typeof window[command] === "function") {
+		|| command == "spotify"
+		|| command == "styleprompt") {
 		block_log(config.shellPrompt + command + " " + args);
-		window[command](args);
-        lastCommand = command + input.replace(command, "");
-		addCommandToHist(input)
-	} else if (command != "") {
-        block_log("websh: " + command + ": command not found");
+		window[command](argsArray);
 		lastCommand = command + input.replace(command, "");
 		addCommandToHist(input)
-    }
-    cmd_hist_curr_index = 0;
+	} else if (typeof window[command] === "function") {
+		block_log(config.shellPrompt + command + " " + args);
+		window[command](args);
+		lastCommand = command + input.replace(command, "");
+		addCommandToHist(input)
+	} else if (command != "") {
+		block_log("websh: " + command + ": command not found");
+		lastCommand = command + input.replace(command, "");
+		addCommandToHist(input)
+	}
+	cmd_hist_curr_index = 0;
+	saveHistAsCookie()
 }
 
 function addCommandToHist(input) {
-		if (command + input.replace(command, "") != command_history[1]) {
-			command_history.shift()
-        	command_history.unshift(command + input.replace(command, ""));
-			command_history.unshift("")
-		}
-}
-
-function getLastCommand() {
-	if (!(event.keyCode === 38)) return
-	if (lastCommand) {
-		document.getElementById("input_source").value = lastCommand
+	if (command + input.replace(command, "") != command_history[1]) {
+		command_history.shift()
+		command_history.unshift(command + input.replace(command, ""));
+		command_history.unshift("")
 	}
 }
 
 function getLastCommand() {
 	if (!(event.keyCode === 38)) return
-        if (command_history.length != 0) {
+	if (command_history.length != 0) {
 		if (cmd_hist_curr_index <= command_history.length
 			&& command_history[(cmd_hist_curr_index + 1)]) {
 			cmd_hist_curr_index += 1;
 			document.getElementById("input_source").value = command_history[cmd_hist_curr_index];
-                } else {
+		} else {
 			return
 		}
-        }
+	}
 }
 
 function getPrevCommand() {
-        if (!(event.keyCode === 40)) return
-        if (command_history.length != 0) {
-                if (cmd_hist_curr_index > 0) {
-                        cmd_hist_curr_index -= 1;
-	                document.getElementById("input_source").value = command_history[cmd_hist_curr_index];
-                } else {
-                        return
-                }
-        }
+	if (!(event.keyCode === 40)) return
+	if (command_history.length != 0) {
+		if (cmd_hist_curr_index > 0) {
+			cmd_hist_curr_index -= 1;
+			document.getElementById("input_source").value = command_history[cmd_hist_curr_index];
+		} else {
+			return
+		}
+	}
+}
+
+function saveHistAsCookie() {
+	document.cookie = `command_history=${command_history}; SameSite=None; Secure`
+}
+
+clrhist = clearhist
+function clearhist() {
+	document.cookie = `command_history=${command_history}; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure`
+	command_history = [ "" ]
 }
 
 cookies = document.cookie.split(";")
