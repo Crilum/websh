@@ -5,43 +5,43 @@ function google(argsArray) {
     sub = argsArray[1]
     deep = argsArray[2]
     if (main == "mail") {
-        if (sub == "") {
+        if (sub == "" || sub == undefined) {
             window.open("https://mail.google.com/mail/");
         } else {
             window.open(`https://mail.google.com/mail/u/${sub}`);
         }
     } else if (main == "drive") {
-        if (sub == "") {
+        if (sub == "" || sub == undefined) {
             window.open("https://drive.google.com/drive/");
         } else {
             window.open(`https://drive.google.com/drive/u/${sub}`);
         }
     } else if (main == "docs") {
-        if (sub == "") {
-            window.open("https://docs.google.com/docs/");
+        if (sub == "" || sub == undefined) {
+            window.open("https://docs.google.com/");
         } else if (sub == "new") {
             window.open(`https://docs.new/`)
         } else {
             window.open(`https://drive.google.com/drive/u/${sub}`);
         }
     } else if (main == "slides") {
-        if (sub == "") {
-            window.open("https://slides.google.com/slides/");
+        if (sub == "" || sub == undefined) {
+            window.open("https://slides.google.com/");
         } else if (sub == "new") {
             window.open(`https://slides.new/`)
         } else {
             window.open(`https://slides.google.com/slides/u/${sub}`);
         }
     } else if (main == "sheets") {
-        if (sub == "") {
-            window.open("https://sheets.google.com/sheets/");
+        if (sub == "" || sub == undefined) {
+            window.open("https://sheets.google.com/");
         } else if (sub == "new") {
             window.open(`https://sheets.new/`)
         } else {
             window.open(`https://sheets.google.com/sheets/u/${sub}`);
         }
     } else if (main == "forms") {
-        if (sub == "") {
+        if (sub == "" || sub == undefined) {
             window.open("https://forms.google.com/forms/");
         } else if (sub == "new") {
             window.open(`https://forms.new/`)
@@ -49,37 +49,37 @@ function google(argsArray) {
             window.open(`https://forms.google.com/forms/u/${sub}`);
         }
     } else if (main == "voice") {
-        if (sub == "") {
+        if (sub == "" || sub == undefined) {
             window.open("https://voice.google.com/voice/");
         } else {
             window.open(`https://voice.google.com/voice/u/${sub}`);
         }
     } else if (main == "maps") {
-        if (sub == "") {
+        if (sub == "" || sub == undefined) {
             window.open("https://maps.google.com/maps/");
         } else {
             window.open(`https://maps.google.com/maps/u/${sub}`);
         }
     } else if (main == "chat") {
-        if (sub == "") {
+        if (sub == "" || sub == undefined) {
             window.open("https://chat.google.com/chat/");
         } else {
             window.open(`https://chat.google.com/chat/u/${sub}`);
         }
     } else if (main == "contacts") {
-        if (sub == "") {
+        if (sub == "" || sub == undefined) {
             window.open("https://contacts.google.com/contacts/");
         } else {
             window.open(`https://contacts.google.com/contacts/u/${sub}`);
         }
     } else if (main == "calendar") {
-        if (sub == "") {
+        if (sub == "" || sub == undefined) {
             window.open("https://calendar.google.com/calendar/");
         } else {
             window.open(`https://calendar.google.com/calendar/u/${sub}`);
         }
     } else if (main == "photos") {
-        if (sub == "") {
+        if (sub == "" || sub == undefined) {
             window.open("https://photos.google.com/photos/");
         } else {
             window.open(`https://photos.google.com/photos/u/${sub}`);
