@@ -1,14 +1,109 @@
-// Search something on google, if no arguments are provided => www.google.com
+// use google tools, search something on google, if no arguments are provided => www.google.com
 g = google;
-function google(args) {
-    if (args != undefined && args != "") {
+function google(argsArray) {
+    main = argsArray[0]
+    sub = argsArray[1]
+    deep = argsArray[2]
+    if (main == "mail") {
+        if (sub == "") {
+            window.open("https://mail.google.com/mail/");
+        } else {
+            window.open(`https://mail.google.com/mail/u/${sub}`);
+        }
+    } else if (main == "drive") {
+        if (sub == "") {
+            window.open("https://drive.google.com/drive/");
+        } else {
+            window.open(`https://drive.google.com/drive/u/${sub}`);
+        }
+    } else if (main == "docs") {
+        if (sub == "") {
+            window.open("https://docs.google.com/docs/");
+        } else if (sub == "new") {
+            window.open(`https://docs.new/`)
+        } else {
+            window.open(`https://drive.google.com/drive/u/${sub}`);
+        }
+    } else if (main == "slides") {
+        if (sub == "") {
+            window.open("https://slides.google.com/slides/");
+        } else if (sub == "new") {
+            window.open(`https://slides.new/`)
+        } else {
+            window.open(`https://slides.google.com/slides/u/${sub}`);
+        }
+    } else if (main == "sheets") {
+        if (sub == "") {
+            window.open("https://sheets.google.com/sheets/");
+        } else if (sub == "new") {
+            window.open(`https://sheets.new/`)
+        } else {
+            window.open(`https://sheets.google.com/sheets/u/${sub}`);
+        }
+    } else if (main == "forms") {
+        if (sub == "") {
+            window.open("https://forms.google.com/forms/");
+        } else if (sub == "new") {
+            window.open(`https://forms.new/`)
+        } else {
+            window.open(`https://forms.google.com/forms/u/${sub}`);
+        }
+    } else if (main == "voice") {
+        if (sub == "") {
+            window.open("https://voice.google.com/voice/");
+        } else {
+            window.open(`https://voice.google.com/voice/u/${sub}`);
+        }
+    } else if (main == "maps") {
+        if (sub == "") {
+            window.open("https://maps.google.com/maps/");
+        } else {
+            window.open(`https://maps.google.com/maps/u/${sub}`);
+        }
+    } else if (main == "chat") {
+        if (sub == "") {
+            window.open("https://chat.google.com/chat/");
+        } else {
+            window.open(`https://chat.google.com/chat/u/${sub}`);
+        }
+    } else if (main == "contacts") {
+        if (sub == "") {
+            window.open("https://contacts.google.com/contacts/");
+        } else {
+            window.open(`https://contacts.google.com/contacts/u/${sub}`);
+        }
+    } else if (main == "calendar") {
+        if (sub == "") {
+            window.open("https://calendar.google.com/calendar/");
+        } else {
+            window.open(`https://calendar.google.com/calendar/u/${sub}`);
+        }
+    } else if (main == "photos") {
+        if (sub == "") {
+            window.open("https://photos.google.com/photos/");
+        } else {
+            window.open(`https://photos.google.com/photos/u/${sub}`);
+        }
+    } else if (main == "help") {
+        block_log(`g, or google - use the Google ecosystem
+        <br><br>Subcommands:
+        <br><br>\`mail\` open Gmail, you can also specify a user number
+        <br>\`drive\` open Google Drive, you can also specify a user number
+        <br>\`docs\` open Google Docs, you can also specify a user number, or \`new\`, to open a new Doc
+        <br><br>Examples:
+        <br><br>\`g mail 1\` - Opens user 1's Gmail
+        <br>\`g docs new\` - Opens a new Doc
+        <br>\`g drive\` - Opens Google Drive
+        <br>\`g How to learn JavaScript\` - Search for 'How to learn JavaScript'
+        <br>\`g\` Open google.com`)
+    } else if (main != "") {
         search = args
             .replace("+", "%2B")
             .replace(" ", "+")
             .replace("&", "%26")
             .replace("#", "%23")
         window.open("https://www.google.com/search?q=" + search);
-    } else {
+    } else if (main == "") {
         window.open("https://www.google.com");
     }
 }

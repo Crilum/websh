@@ -72,7 +72,9 @@ function submit_command_from_param(arg) {
 		|| command == "wttr"
 		|| command == "weather"
 		|| command == "spotify"
-		|| command == "styleprompt") {
+		|| command == "styleprompt"
+		|| command == "g"
+		|| command == "google") {
 		block_log(config.shellPrompt + command + " " + args);
 		window[command](argsArray);
 		lastCommand = command + input.replace(command, "");
@@ -136,7 +138,9 @@ function submit_command() {
 		|| command == "wttr"
 		|| command == "weather"
 		|| command == "spotify"
-		|| command == "styleprompt") {
+		|| command == "styleprompt"
+		|| command == "g"
+		|| command == "google") {
 		block_log(config.shellPrompt + command + " " + args);
 		window[command](argsArray);
 		lastCommand = command + input.replace(command, "");
