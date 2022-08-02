@@ -11,10 +11,7 @@ document.getElementById('input_source').addEventListener('keydown', getPrevComma
 
 var current_block;
 var cmd_hist_curr_index = 0;
-if (document.cookie
-	.split('; ')
-	.find(row => row.startsWith(`command_history=`.split(" ").join(""))
-	).split('=')[1] == "") {
+if (! document.cookie.includes("command_history=")) {
 	var command_history = [""];
 } else {
 	var command_history = document.cookie
