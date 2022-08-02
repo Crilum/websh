@@ -87,8 +87,17 @@ function google(argsArray) {
         block_log(`g, or google - use the Google ecosystem
         <br><br>Subcommands:
         <br><br>\`mail\` open Gmail, you can also specify a user number
+        <br>\`maps\` open Google Maps, you can also specify a user number
         <br>\`drive\` open Google Drive, you can also specify a user number
+        <br>\`photos\` open Google Photos, you can also specify a user number
+        <br>\`calendar\` open Google Calendar, you can also specify a user number
+        <br>\`voice\` open Google Voice, you can also specify a user number
+        <br>\`contacts\` open Google Contacts, you can also specify a user number
+        <br>\`chat\` open Google Chat, you can also specify a user number
         <br>\`docs\` open Google Docs, you can also specify a user number, or \`new\`, to open a new Doc
+        <br>\`sheets\` open Google Sheets, you can also specify a user number, or \`new\`, to open a new Sheet
+        <br>\`slides\` open Google Slides, you can also specify a user number, or \`new\`, to open a new Slide
+        <br>\`forms\` open Google Forms, you can also specify a user number, or \`new\`, to open a new Form
         <br><br>Examples:
         <br><br>\`g mail 1\` - Opens user 1's Gmail
         <br>\`g docs new\` - Opens a new Doc
@@ -367,7 +376,7 @@ function help() {
     <br>  \`vscode\`, \`code\`, or \`vs\` - Use VS Code in your browser, or on your computer.
     <br>  \`snap\` - open snaps in the Snap Store
     <br/><br/> Search engines/web tools:
-    <br/><br/>  \`g\`, or \`google\` - go to https://google.com, or search for ARGS
+    <br/><br/>  \`g\`, or \`google\` - go to https://google.com, search for ARGS, or use a number of Google services. \`g help\` for more info
     <br/>  \`s\`, \`search\`, \`d\`, \`ddg\`, or \`duckduckgo\` - go to https://duckduckgo.com, or search for ARGS
     <br/>  \`w\`, or \`wikipedia\` - go to https://wikipedia.org, or search for ARGS
     <br/>  \`gh\`, or \`github\` - go to https://github.com, or search for ARGS
