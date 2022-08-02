@@ -3,6 +3,33 @@ config = {
 	shellPrompt: "$ "
 }
 
+argsArrayFuncs = [
+	"bk",
+	"bookmark",
+	"theme",
+	"code",
+	"vs",
+	"vscode",
+	"snap",
+	"lds",
+	"churchofjesuschrist",
+	"r",
+	"reddit",
+	"usps",
+	"ups",
+	"gh",
+	"github",
+	"yt",
+	"youtube",
+	"wttr",
+	"weather",
+	"spotify",
+	"styleprompt",
+	"g",
+	"google",
+	"p",
+	"proton"
+]
 
 document.getElementById("input_title").innerText = config.shellPrompt;
 document.getElementById('input_source').addEventListener('keyup', submit_command);
@@ -52,29 +79,7 @@ function submit_command_from_param(arg) {
 		.replace(" ", "")
 		.split(" ")
 	if (typeof window[command] === "function"
-		&& command == "bk"
-		|| command == "bookmark"
-		|| command == "theme"
-		|| command == "code"
-		|| command == "vs"
-		|| command == "vscode"
-		|| command == "snap"
-		|| command == "lds"
-		|| command == "churchofjesuschrist"
-		|| command == "r"
-		|| command == "reddit"
-		|| command == "usps"
-		|| command == "ups"
-		|| command == "gh"
-		|| command == "github"
-		|| command == "yt"
-		|| command == "youtube"
-		|| command == "wttr"
-		|| command == "weather"
-		|| command == "spotify"
-		|| command == "styleprompt"
-		|| command == "g"
-		|| command == "google") {
+		&& argsArrayFuncs.includes(command)) {
 		block_log(config.shellPrompt + command + " " + args);
 		window[command](argsArray);
 		lastCommand = command + input.replace(command, "");
@@ -118,29 +123,7 @@ function submit_command() {
 		.replace(" ", "")
 		.split(" ")
 	if (typeof window[command] === "function"
-		&& command == "bk"
-		|| command == "bookmark"
-		|| command == "theme"
-		|| command == "code"
-		|| command == "vs"
-		|| command == "vscode"
-		|| command == "snap"
-		|| command == "lds"
-		|| command == "churchofjesuschrist"
-		|| command == "r"
-		|| command == "reddit"
-		|| command == "usps"
-		|| command == "ups"
-		|| command == "gh"
-		|| command == "github"
-		|| command == "yt"
-		|| command == "youtube"
-		|| command == "wttr"
-		|| command == "weather"
-		|| command == "spotify"
-		|| command == "styleprompt"
-		|| command == "g"
-		|| command == "google") {
+		&& argsArrayFuncs.includes(command)) {
 		block_log(config.shellPrompt + command + " " + args);
 		window[command](argsArray);
 		lastCommand = command + input.replace(command, "");

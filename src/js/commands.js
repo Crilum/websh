@@ -116,6 +116,58 @@ function google(argsArray) {
     }
 }
 
+p = proton
+function proton(argsArray) {
+    main = argsArray[0]
+    sub = argsArray[1]
+
+    if (main == "mail") {
+        if (sub == "" || sub == undefined) {
+            window.open("https://mail.proton.me/");
+        } else {
+            window.open(`https://mail.proton.me/u/${sub}`);
+        }
+    } else if (main == "drive") {
+        if (sub == "" || sub == undefined) {
+            window.open("https://drive.proton.me/");
+        } else {
+            window.open(`https://drive.proton.me/u/${sub}`);
+        }
+    } else if (main == "calendar") {
+        if (sub == "" || sub == undefined) {
+            window.open("https://calendar.proton.me/");
+        } else {
+            window.open(`https://calendar.proton.me/u/${sub}`);
+        }
+    } else if (main == "vpn") {
+        if (sub == "" || sub == undefined) {
+            window.open("https://account.proton.me/vpn");
+        } else {
+            window.open(`https://account.proton.me/u/${sub}/vpn`);
+        }
+    } else if (main == "account") {
+        if (sub == "" || sub == undefined) {
+            window.open("https://account.proton.me/");
+        } else {
+            window.open(`https://account.proton.me/u/${sub}`);
+        }
+    } else if (main == "help") {
+        block_log(`p, or proton - use the Proton ecosystem
+        <br><br>Subcommands:
+        <br><br>\`mail\` open Proton Mail
+        <br>\`drive\` open Proton Drive
+        <br>\`calendar\` open Proton Calendar
+        <br>\`vpn\` open Proton vpn settings
+        <br>\`account\` open Proton Account
+        <br><br>Examples:
+        <br><br>\`p mail 0\` - Open User 0's Proton Mail
+        <br>\`proton drive\` Open Proton Drive
+        <br>\`proton\` - Open proton.me`)
+    } else {
+        window.open("https://proton.me")
+    }
+}
+
 // Display time
 time = clock;
 function clock(args) {
@@ -376,7 +428,8 @@ function help() {
     <br>  \`vscode\`, \`code\`, or \`vs\` - Use VS Code in your browser, or on your computer.
     <br>  \`snap\` - open snaps in the Snap Store
     <br/><br/> Search engines/web tools:
-    <br/><br/>  \`g\`, or \`google\` - go to https://google.com, search for ARGS, or use a number of Google services. \`g help\` for more info
+    <br/><br/>  \`g\`, or \`google\` - go to https://google.com, search for ARGS, or use a number of Google services. \`g help\` for more info.
+    <br>   \`p\`, or \`proton\` - go to https://proton.me, or use a number of Proton services. \`p help\` for more info.
     <br/>  \`s\`, \`search\`, \`d\`, \`ddg\`, or \`duckduckgo\` - go to https://duckduckgo.com, or search for ARGS
     <br/>  \`w\`, or \`wikipedia\` - go to https://wikipedia.org, or search for ARGS
     <br/>  \`gh\`, or \`github\` - go to https://github.com, or search for ARGS
