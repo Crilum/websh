@@ -3,7 +3,6 @@ g = google;
 function google(argsArray) {
     main = argsArray[0]
     sub = argsArray[1]
-    deep = argsArray[2]
     if (main == "mail") {
         if (sub == "" || sub == undefined) {
             window.open("https://mail.google.com/mail/");
