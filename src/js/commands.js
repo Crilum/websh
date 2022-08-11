@@ -427,6 +427,8 @@ function help() {
     <br>  \`wttr\`, \`weather\` - get the weather, powered by <a href="https://wttr.in">wttr.in</a>
     <br>  \`vscode\`, \`code\`, or \`vs\` - Use VS Code in your browser, or on your computer.
     <br>  \`snap\` - open snaps in the Snap Store
+    <br>  \`sreenshot\`, \`sc\`, or \`prtscn\` - Take a screenshot of the terminal
+    <br>  \`share\` - Share websh with all your friends! (It helps me a lot if you share this)
     <br/><br/> Search engines/web tools:
     <br/><br/>  \`g\`, or \`google\` - go to https://google.com, search for ARGS, or use a number of Google services. \`g help\` for more info.
     <br>   \`p\`, or \`proton\` - go to https://proton.me, or use a number of Proton services. \`p help\` for more info.
@@ -1040,6 +1042,75 @@ function styleprompt() {
             document.getElementById("dialogContainer").innerHTML = ""
             $('#dialogContainer').hide()
         })
+    } else {
+        error(`E: no argument specified.. \`${command} help\` for args`)
+    }
+}
+
+function share() {
+    main = argsArray[0]
+    sub = argsArray[1]
+    if (main == "copy") {
+        msg = `Check out websh, the web-powered shell emulator!
+        ${(window.origin)}`
+        navigator.clipboard.writeText(msg);
+        block_log(`Copied "${msg}" to clipboard!`)
+    } else if (main == "twitter") {
+        window.open(`https://twitter.com/intent/tweet?text=Check%20out%20websh,%20the%20web-powered%20shell%20emulator!%20${(window.origin)}`)
+    } else if (main == "email") {
+        if (sub == undefined || sub == "") {
+            email = "crilum@crilum.tk"
+        } else {
+            email = sub
+        }
+        window.open(`mailto:${email}?subject=A%20cool%20website&body=Check%20out%20websh,%20the%20web-powered%20shell%20emulator!%20${(window.origin)}`)
+    } else if (main == "help") {
+        block_log(`share - spread websh!
+        <br><br>Subcommands:
+        <br><br>\`help\` - print this help
+        <br>\`copy\` - copy a message to share about websh
+        <br>\`twitter\` - Share websh to twitter
+        <br>\`email\` - Send an email about websh (using a mailto link)
+        <br>\`reddit\` Share websh to reddit
+        <br>\`facebook\`
+        <br><br>Examples:
+        <br><br>\`share copy\` - copy "Check out websh, the web-powered shell emulator! ${(window.origin)}"
+        <br>\`share email example@example.com\` Share an email about websh to 'example@example.com'
+        <br><br>Notes:
+        <br><br>I haven't actually tested \`twitter\`, but I'm pretty sure it works.
+        <br><br>It would be great to send a screenshot to whoever you're sharing websh with, wouldn't it?
+        <br>Well, you can actually take a screenshot of the websh terminal by running \`sc\` (or \`screenshot\`)!`)
+    } else if (main == "facebook") {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${(window.origin)}%2F&amp;src=sdkpreparse`)
+    } else if (main == "reddit") {
+        window.open(`http://www.reddit.com/submit?url=${(window.origin)}&title=Check%20out%20this%20cool%20website!`)
+    } else {
+        error(`E: no argument specified.. \`${command} help\` for args`)
+    }
+}
+
+prtscn = screenshot
+sc = screenshot
+function screenshot() {
+    main = argsArray[0]
+    sub = argsArray[1]
+    const v = new Date()
+    if (main == "help") {
+        block_log(`screenshot, prtscn, or sc - take a screenshot of the websh terminal
+        <br><br>Subcommands:
+        <br><br>\`help\` - print this help
+        <br><br>Examples:
+        <br><br>\`sc\` - take a screenshot
+        <br><br>Notes:
+        <br><br>The picture filename will be laid out in this order:
+        <br>websh-screenshot_{Month}-{Day}-{Year}_{Hour}{Minute}{Millisecond}.png`)
+    } else {
+        const screenshotTarget = document.body;
+
+        html2canvas(screenshotTarget).then((canvas) => {
+            const base64image = canvas.toDataURL("image/png");
+            saveAs(base64image, `websh-screenshot_${v.getMonth()}-${v.getDate()}-${v.getFullYear()}_${v.getHours()}${v.getMinutes()}${v.getMilliseconds()}`);
+        });
     }
 }
 

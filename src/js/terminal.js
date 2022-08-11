@@ -28,7 +28,10 @@ argsArrayFuncs = [
 	"g",
 	"google",
 	"p",
-	"proton"
+	"proton",
+	"screenshot",
+	"sc",
+	"prtscn"
 ]
 
 document.getElementById("input_title").innerText = config.shellPrompt;
