@@ -6,7 +6,6 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
 [![status](https://img.shields.io/website?down_message=offline&up_color=brightgreen&up_message=online&url=https%3A%2F%2Fwebsh.crilum.tk)](https://websh.crilum.tk)
 [![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)](https://www.javascript.com/)
-[![Awesome Badges](https://img.shields.io/badge/badges-awesome-green.svg)](https://shields.io)
 
 
 The web powered shell emulator
