@@ -1,10 +1,12 @@
 # websh
-![DuckDuckGo badge](https://img.shields.io/badge/DuckDuckGo%20Privacy%20Ranking-B%2B-brightgreen)
-![licence](https://img.shields.io/github/license/Crilum/websh)
-![stars](https://badgen.net/github/stars/Crilum/websh)
-![GitHub issues](https://img.shields.io/github/issues/Crilum/websh.svg)
+[![DuckDuckGo badge](https://img.shields.io/badge/DuckDuckGo%20Privacy%20Ranking-B%2B-brightgreen)](https://duckduckgo.com)
+[![licence](https://img.shields.io/github/license/Crilum/websh)](https://github.com/Crilum/websh/blob/main/LICENSE)
+[![stars](https://badgen.net/github/stars/Crilum/websh)](https://github.com/Crilum/websh/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/Crilum/websh.svg)](https://github.com/Crilum/websh/issues/new/choose)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
-![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)
+[![status](https://img.shields.io/website?down_message=offline&up_color=brightgreen&up_message=online&url=https%3A%2F%2Fwebsh.crilum.tk)](https://websh.crilum.tk)
+[![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)](https://www.javascript.com/)
+[![Awesome Badges](https://img.shields.io/badge/badges-awesome-green.svg)](https://shields.io)
 
 
 The web powered shell emulator
