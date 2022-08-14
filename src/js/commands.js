@@ -427,7 +427,7 @@ function help() {
     <br>  \`wttr\`, \`weather\` - get the weather, powered by <a href="https://wttr.in">wttr.in</a>
     <br>  \`vscode\`, \`code\`, or \`vs\` - Use VS Code in your browser, or on your computer.
     <br>  \`snap\` - open snaps in the Snap Store
-    <br>  \`sreenshot\`, \`sc\`, or \`prtscn\` - Take a screenshot of the terminal
+    <br>  \`screenshot\`, \`sc\`, or \`prtscn\` - Take a screenshot of the terminal
     <br>  \`share\` - Share websh with all your friends! (It helps me a lot if you share this)
     <br/><br/> Search engines/web tools:
     <br/><br/>  \`g\`, or \`google\` - go to https://google.com, search for ARGS, or use a number of Google services. \`g help\` for more info.
@@ -453,7 +453,7 @@ function help() {
     <br/><br/>Note: for color setting use CSS Colors, HEX Codes, or rgb() Colors.
     <br><br> Using websh with URL parameters:
     <br><br>  You can use URL parameters to run commands while the page is loading, e.g. \`<a href="${rawURL}/?command=echo Hey, this command was run via URL!&command=time" target="_blank">${rawURL}/?command=echo Hey, this command was run via URL!&command=time</a><style>color: ${textColor};</style>\`
-    <br>  Basically, write \`?command=yourCommand\` after the URL (${rawURL}/), and use \`&command=yourCommand\` after the first command, and thereafter.
+    <br>  Basically, write \`?command=yourCommand\` after the URL (${rawURL}/), and use \`&command=yourCommand\` thereafter.
     <br>There isn't a maximum number of commands you can specify (until you hit the browser URL size limit of course), but it's </font><a href="https://stackoverflow.com/q/417142" target="_blank">best to keep the number of chars in your URL below 2000</a><style>color: ${textColor};</style>.<br>`)
 }
 
