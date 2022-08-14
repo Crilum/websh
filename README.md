@@ -1,4 +1,11 @@
 # websh
+![DuckDuckGo badge](https://img.shields.io/badge/DuckDuckGo%20Privacy%20Ranking-B%2B-brightgreen)
+![licence](https://img.shields.io/github/license/Crilum/websh)
+![stars](https://badgen.net/github/stars/Crilum/websh)
+![GitHub issues](https://img.shields.io/github/issues/Crilum/websh.svg)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
+![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)
+
 
 The web powered shell emulator
 
