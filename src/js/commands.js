@@ -1089,6 +1089,11 @@ function share() {
     }
 }
 
+function star() {
+    block_log("Star the repo!")
+    window.open("https://girhub.com/Crilum/websh")
+}
+
 prtscn = screenshot
 sc = screenshot
 function screenshot() {
