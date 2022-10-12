@@ -548,7 +548,7 @@ function setTextBoxColor(args) {
     }
 }
 
-web = link
+open = link
 function link(args) {
     if (args != "") {
         if (args.includes("://")) {
