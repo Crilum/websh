@@ -548,7 +548,6 @@ function setTextBoxColor(args) {
     }
 }
 
-open = link
 function link(args) {
     if (args != "") {
         if (args.includes("://")) {
